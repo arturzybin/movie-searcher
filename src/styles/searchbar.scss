@@ -1,0 +1,83 @@
+@mixin styling($def-size) {
+
+.searchbar {
+   width: 50%;
+   margin: auto;
+   border-radius: 5px;
+   box-shadow: 0 0 5px #000;
+   height: $def-size;
+   padding: 0 5px;
+   position: relative;
+   min-width: 300px;
+
+   &_centered {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      right: 0;
+      margin: auto;
+   }
+
+   &__input {
+      width: calc(100% - $def-size*2);
+      border: none;
+      line-height: $def-size;
+      background-color: transparent;
+      font-size: 20px;
+      outline: none;
+   }
+
+   &__button {
+      border: none;
+      width: $def-size;
+      height: $def-size;
+      background-color: transparent;
+      opacity: .9;
+      position: absolute;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      cursor: pointer;
+      
+      &:focus {
+         outline: 1px solid #26b4d9;
+      }
+
+      &:hover {
+         opacity: 1;
+      }
+   }
+
+   &__settings {
+      background-image: url(../img/settings.svg);
+      right: $def-size;
+      transition-duration: .3s;
+
+      &:hover {
+         transform: rotate(45deg);
+         transition-duration: .3s;
+      }
+   }
+
+   &__search-button {
+      background-image: url(../img/searcher.svg);
+      right: 0;
+   }
+}
+
+}
+
+@include styling($def-size: 50px);
+
+@media screen and (max-width: 1300px) {
+   .searchbar {
+      width: 70%;
+   }
+}
+
+@media screen and (max-width: 700px) {
+   @include styling($def-size: 40px);
+   .searchbar {
+      width: 80%;
+   }
+}
