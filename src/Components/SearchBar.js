@@ -2,7 +2,7 @@ import React from 'react';
 
 function SearchBar(props) {
    return (
-      <div className="searchbar searchbar_centered">
+      <div className="searchbar">
          <input
             className="searchbar__input"
             type="text"
