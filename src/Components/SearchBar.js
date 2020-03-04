@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function SearchBar(props) {
+function SearchBar() {
+   const [text, setText] = useState('');
+
    return (
-      <div className="searchbar">
+      <div className="searchbar ">
          <input
             className="searchbar__input"
             type="text"
             placeholder="Search movies"
             autoFocus={true}
+            onChange={(e) => setText(e.target.value)}
          />
          <button className="searchbar__filter searchbar__button"></button>
          <input
