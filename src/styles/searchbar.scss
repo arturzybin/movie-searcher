@@ -48,7 +48,6 @@
             background-color: transparent;
             background-repeat: no-repeat;
             background-position: 50% 50%;
-            background-size: 80%;
 
             &:focus {
                 outline: 1px solid #26b4d9;
@@ -59,23 +58,32 @@
             }
         }
 
-        &__settings {
+        &__filter {
             right: $def-size;
 
             transition-duration: .3s;
 
             background-image: url(../img/settings.svg);
+            background-size: 50%;
+            transform: rotate(90deg);
 
             &:hover {
                 transition-duration: .3s;
-                transform: rotate(45deg);
+                transform: rotate(-90deg);
             }
         }
 
         &__search-button {
             right: 0;
+            background-size: 70%;
 
             background-image: url(../img/searcher.svg);
+            transition-duration: .3s;
+
+            &:hover {
+                transition-duration: .3s;
+                transform: rotate(9deg);
+            }
         }
     }
 }

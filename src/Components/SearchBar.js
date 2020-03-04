@@ -9,7 +9,7 @@ function SearchBar(props) {
             placeholder="Search movies"
             autoFocus={true}
          />
-         <button className="searchbar__settings searchbar__button"></button>
+         <button className="searchbar__filter searchbar__button"></button>
          <input
             className="searchbar__search-button searchbar__button"
             type="submit"
