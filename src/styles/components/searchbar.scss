@@ -15,7 +15,7 @@
 
         border-radius: 5px;
 
-        @include themify($themes) {
+        @include themify() {
             box-shadow: 0 0 5px themed('searchbar-shadow-color');
             background-color: themed('searchbar-background');
         }
@@ -39,7 +39,7 @@
             outline: none;
             background-color: transparent;
             
-            @include themify($themes) {
+            @include themify() {
                 color: themed('text-color');
             }
         }
@@ -58,7 +58,7 @@
             background-repeat: no-repeat;
             background-position: 50% 50%;
 
-            @include themify($themes) {
+            @include themify() {
                 filter: themed('searchbar-buttons-filter');
             }
 
@@ -71,7 +71,7 @@
             }
         }
 
-        &__filter {
+        &__filter-button {
             right: $def-size;
 
             transition-duration: .3s;
