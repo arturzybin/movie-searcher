@@ -18,11 +18,16 @@ class App extends React.Component{
   }
 
 
+  search = (params) => {
+
+  }
+
+
   render() {
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
         <ThemeToggler handleToggle={this.toggleTheme} />
-        <SearchBar />
+        <SearchBar handleSearch={this.search} />
       </main>
     )
   }
