@@ -4,7 +4,7 @@ function SearchBar() {
    const [text, setText] = useState('');
 
    return (
-      <div className="searchbar searchbar_centered">
+      <div className="searchbar ">
          <input
             className="searchbar__input"
             type="text"

@@ -8,7 +8,7 @@
 
         width: 50%;
         min-width: 300px;
-        max-width: 30%;
+        
         height: $def-size;
         margin: auto;
         padding: 0 5px;
@@ -26,7 +26,6 @@
             right: 0;
             left: 0;
 
-            max-width: 100%;
             margin: auto;
         }
 
@@ -113,6 +112,9 @@
 @media screen and (max-width: 1000px) {
     .searchbar {
         right: 110px;
+        &_centered{
+            right: 0;
+        }
     }
 }
 
@@ -121,5 +123,23 @@
     .searchbar {
         width: 80%;
         right: 90px;
+        &_centered{
+            right: 0;
+        }
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .searchbar {
+        right: 65px;
+    }
+ }
+
+
+@media (orientation: portrait) {
+    .searchbar {
+        width: auto;
+        left: 10px;
     }
 }
