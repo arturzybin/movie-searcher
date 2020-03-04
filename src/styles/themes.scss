@@ -3,12 +3,14 @@ $themes: (
       main-background: #cad3d6,
       searchbar-background: #dfe6e9,
       searchbar-shadow-color: #9a12b3,
+      searchbar-buttons-filter: none,
       text-color: #000,
    ),
    dark: (
       main-background: #2d3436,
       searchbar-background: #2d3031,
       searchbar-shadow-color: #55efc4,
+      searchbar-buttons-filter: invert(75%),
       text-color: rgb(218, 218, 218),
    )
 );

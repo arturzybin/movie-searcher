@@ -59,6 +59,10 @@
             background-repeat: no-repeat;
             background-position: 50% 50%;
 
+            @include themify($themes) {
+                filter: themed('searchbar-buttons-filter');
+            }
+
             &:focus {
                 outline: 1px solid #26b4d9;
             }
