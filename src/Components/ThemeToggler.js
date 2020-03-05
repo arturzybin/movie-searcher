@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ThemeToggler(props) {
    return (
@@ -10,6 +11,10 @@ function ThemeToggler(props) {
       >
       </input>
    )
+}
+
+ThemeToggler.propTypes = {
+   handleToggle: PropTypes.func.isRequired,
 }
 
 export default ThemeToggler;

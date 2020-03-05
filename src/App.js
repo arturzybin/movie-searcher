@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SearchBar from './Components/SearchBar';
 import ThemeToggler from './Components/ThemeToggler';
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 function Filter(props) {
    return (
@@ -132,6 +134,13 @@ function Filter(props) {
          </div>
       </div>
    )
+}
+
+Filter.propTypes = {
+   isClosed: PropTypes.bool.isRequired,
+   handleTypeChange: PropTypes.func.isRequired,
+   handleGenreChange: PropTypes.func.isRequired,
+   handleYearChange: PropTypes.func.isRequired
 }
 
 export default Filter;

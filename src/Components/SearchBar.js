@@ -1,5 +1,6 @@
 import React from 'react';
 import Filter from './Filter';
+import PropTypes from 'prop-types';
 
 
 class SearchBar extends React.Component {
@@ -12,16 +13,15 @@ class SearchBar extends React.Component {
       year: null
    }
 
+
    triggerEnterKeySearch = (e) => {
       if (e.keyCode !== 13) return;
       document.querySelector('.searchbar__search-button').click();
    }
-
-   setupEnterSearch = (e) => {
+   setupEnterKeySearch = (e) => {
       document.addEventListener('keypress', this.triggerEnterKeySearch);
    }
-
-   cleanUpEnterSearch = (target) => {
+   cleanUpEnterKeySearch = (target) => {
       document.removeEventListener('keypress', this.triggerEnterKeySearch);
       target.onBlur = null;
    }
@@ -37,9 +37,6 @@ class SearchBar extends React.Component {
       this.props.handleSearch({
          text, type, genre, year
       })
-      console.log({
-         text, type, genre, year
-      }, this.state.isFilterClosed)
    }
 
    render() {
@@ -53,8 +50,8 @@ class SearchBar extends React.Component {
                placeholder="Search movies"
                autoFocus={true}
                onChange={(e) => this.setState({ text: e.target.value })}
-               onFocus={this.setupEnterSearch}
-               onBlur={this.cleanUpEnterSearch}
+               onFocus={this.setupEnterKeySearch}
+               onBlur={this.cleanUpEnterKeySearch}
             />
             <button
                className="searchbar__filter-button searchbar__button"
@@ -73,6 +70,10 @@ class SearchBar extends React.Component {
          </div>
       )
    }
+}
+
+SearchBar.propTypes = {
+   handleSearch: PropTypes.func.isRequired
 }
 
 export default SearchBar;
