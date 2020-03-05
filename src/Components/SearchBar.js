@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
    state= {
       isFilterClosed: true,
       isCentered: true,
-      text: null,
+      text: this.props.text,
       type: null,
       genre: null,
       year: null
@@ -37,6 +37,7 @@ class SearchBar extends React.Component {
       this.props.handleSearch({
          text, type, genre, year
       })
+      console.log(text)
    }
 
    render() {
