@@ -1,57 +1,76 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
 import { mount } from 'enzyme';
 
 import SearchBar from '../SearchBar';
 
 
-let container = null;
-beforeEach(() => {
-   container = document.createElement('div');
-   document.body.append(container);
-})
-afterEach(() => {
-   unmountComponentAtNode(container);
-   container.remove();
-   container = null;
-})
+describe('Searchbar should start searching only if there is text at the title input', () => {
 
-describe('Searchbar becomes uncentered after first search', () => {
-   test('should be centered by default', () => {
-      act(() => {
-         render(<SearchBar handleSearch={() => {}} />, container);
-      })
-
-      const isSearchBarCentered = document.querySelector('.searchbar').classList.contains('searchbar_centered');
-      expect(isSearchBarCentered).toBe(true);
+   it("should NOT start searching without any text", () => {
+      const searchCallback = jest.fn(() => {})
+      const wrapper = mount(<SearchBar handleSearch={searchCallback} />);
+      wrapper.find('.searchbar__search-button').simulate('click')
+      
+      expect(searchCallback.mock.calls.length).toBe(0);
    })
 
-   test('should stay centered if there is no text in searchbar', () => {
-      act(() => {
-         render(<SearchBar handleSearch={() => {}} />, container);
-         document.querySelector('.searchbar__search-button').click();
-      })
+   it("should start searching if there is text", () => {
+      const searchCallback = jest.fn(() => {});
+      const wrapper = mount(<SearchBar handleSearch={searchCallback} />);
+      wrapper.setState({ title: 'some title' });
+      wrapper.find('.searchbar__search-button').simulate('click');
+      
+      expect(searchCallback.mock.calls.length).toBe(1);
+   })
+})
 
-      const isSearchBarCentered = document.querySelector('.searchbar').classList.contains('searchbar_centered');
-      expect(isSearchBarCentered).toBe(true);
+
+
+test('Searchbar should have relevant search info when calling search callback', () => {
+   const searchCallback = jest.fn(() => {});
+   const wrapper = mount(<SearchBar handleSearch={searchCallback} />);
+
+   wrapper.find('.searchbar__input').instance().value = 'some title';
+   wrapper.find('.searchbar__input').simulate('change');
+
+   wrapper.find('.filter__select select[name="type"]').simulate('change', {target: {value: 'movie'}});
+   wrapper.find('.filter__select select[name="genre"]').simulate('change', {target: {value: 'Adventure'}});
+   wrapper.find('.filter__select select[name="year"]').simulate('change', {target: {value: '2000'}});
+
+   wrapper.find('.searchbar__search-button').simulate('click');
+
+   expect(searchCallback.mock.calls[0][0].title).toBe('some title');
+   expect(searchCallback.mock.calls[0][0].type).toBe('movie');
+   expect(searchCallback.mock.calls[0][0].genre).toBe('Adventure');
+   expect(searchCallback.mock.calls[0][0].year).toBe('2000');
+})
+
+
+
+test('Searchbar should start searching after pressing the enter key on it', () => {
+   const wrapper = mount(<SearchBar handleSearch={() => {}} />);
+   wrapper.setState({ title: 'some title' });
+   wrapper.find('.searchbar__input').simulate('keydown', {keyCode: 13});
+
+   expect(wrapper.find('.searchbar').hasClass('searchbar_centered')).toBe(false);
+})
+
+
+
+describe('Searchbar should lose classname "searchbar_centered" after first search', () => {
+
+   it('should have classname by default', () => {
+      const wrapper = mount(<SearchBar handleSearch={() => {}} />);
+
+      expect(wrapper.find('.searchbar').hasClass('searchbar_centered')).toBe(true);
    })
 
-   test('should become uncentered after search', () => {
-      act(() => {
-         // render(<SearchBar text='abc' handleSearch={() => {}} />, container);
-         // const input = document.querySelector('.searchbar__input');
-         // input.value = 'some text';
-         // ReactTestUtils.Simulate.change(input, {target: {value: 'some text'}});
-         // document.querySelector('.searchbar__search-button').click();
-         const wrapper = mount(<SearchBar handleSearch={() => {}} />);
-         const input = wrapper.find('.searchbar__input');
-         input.instance().value = "correctUsername";
-         input.simulate('change');
-         wrapper.find('.searchbar__search-button').simulate('click');
-      })
 
-      const isSearchBarCentered = document.querySelector('.searchbar').classList.contains('searchbar_centered');
-      expect(isSearchBarCentered).toBe(false);
+   it('should lose classname after search', () => {
+      const wrapper = mount(<SearchBar handleSearch={() => {}} />);
+      wrapper.setState({ title: 'some title' });
+      wrapper.find('.searchbar__search-button').simulate('click');
+      
+      expect(wrapper.find('.searchbar').hasClass('searchbar_centered')).toBe(false);
    })
 })

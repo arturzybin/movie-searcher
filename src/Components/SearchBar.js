@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
    state= {
       isFilterClosed: true,
       isCentered: true,
-      text: this.props.text,
+      title: null,
       type: null,
       genre: null,
       year: null
@@ -16,28 +16,22 @@ class SearchBar extends React.Component {
 
    triggerEnterKeySearch = (e) => {
       if (e.keyCode !== 13) return;
-      document.querySelector('.searchbar__search-button').click();
-   }
-   setupEnterKeySearch = (e) => {
-      document.addEventListener('keypress', this.triggerEnterKeySearch);
-   }
-   cleanUpEnterKeySearch = (target) => {
-      document.removeEventListener('keypress', this.triggerEnterKeySearch);
-      target.onBlur = null;
+      this.handleSearch();
    }
 
    
    handleSearch = () => {
-      const {isCentered, text, type, genre, year} = this.state;
+      const {isCentered, title, type, genre, year} = this.state;
 
-      if (isCentered && text) {
+      if (!title) return;
+
+      if (isCentered) {
          this.setState({ isCentered: false });
       }
 
       this.props.handleSearch({
-         text, type, genre, year
+         title, type, genre, year
       })
-      console.log(text)
    }
 
    render() {
@@ -50,9 +44,8 @@ class SearchBar extends React.Component {
                type="text"
                placeholder="Search movies"
                autoFocus={true}
-               onChange={(e) => this.setState({ text: e.target.value })}
-               onFocus={this.setupEnterKeySearch}
-               onBlur={this.cleanUpEnterKeySearch}
+               onChange={(e) => this.setState({ title: e.target.value })}
+               onKeyDown={this.triggerEnterKeySearch}
             />
             <button
                className="searchbar__filter-button searchbar__button"
