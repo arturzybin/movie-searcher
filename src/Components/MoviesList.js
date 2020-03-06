@@ -15,17 +15,25 @@ function MoviesList(props) {
    }, [props.shouldStartNewSearch])
 
 
-   async function startNewSearch() {
-      props.handleSearchStart();
-      resetState();
-      const response = await fetch(process.env.PUBLIC_URL + 'search_response_1page.json');
+   async function loadNextPage() {
+      const nextPageNumber = loadedPagesCount + 1;
+      const response = await fetch(
+         `${process.env.PUBLIC_URL}search_response_${nextPageNumber}page.json`);
       const data = await response.json();
 
-      setLoadedMoviesCount(data.Search.length);
+      setLoadedMoviesCount(loadedMoviesCount + data.Search.length);
       setTotalMoviesCount(data.totalResults);
-      setLoadedMovies(data.Search);
-      setLoadedPagesCount(1);
+      setLoadedMovies([...loadedMovies, ...data.Search]);
+      setLoadedPagesCount(nextPageNumber);
    }
+
+
+   function startNewSearch() {
+      props.handleSearchStart();
+      resetState();
+      loadNextPage();
+   }
+
 
    function resetState() {
       setLoadedMoviesCount(0);
@@ -58,12 +66,12 @@ function MoviesList(props) {
 
 
    return (
-      <>
-         <div className="movies-list">
+      <div className="movies-list">
+         <div className="movies-list__movies-container">
             {renderMoviesList()}
          </div>
-         <button className="show-more-button">Show more</button>
-      </>
+         <button className="movies-list__show-more-button" onClick={loadNextPage}>Show more</button>
+      </div>
    )
 }
 

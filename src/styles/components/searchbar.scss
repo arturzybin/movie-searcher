@@ -17,7 +17,7 @@
 
         @include themify() {
             box-shadow: 0 0 5px themed('main-theme-color');
-            background-color: themed('searchbar-background');
+            background-color: themed('searchbar-background-color');
         }
 
         &_centered {

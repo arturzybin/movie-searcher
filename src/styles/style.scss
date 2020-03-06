@@ -10,11 +10,11 @@
    min-height: 100vh;
 
    &.theme-light {
-      background-color: map-get(map-get($themes, light), main-background);
+      background-color: map-get(map-get($themes, light), root-background-color);
    }
 
    &.theme-dark {
-      background-color: map-get(map-get($themes, dark), main-background);
+      background-color: map-get(map-get($themes, dark), root-background-color);
    }
 }
 
