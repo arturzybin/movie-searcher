@@ -10,10 +10,10 @@ import './styles/style.scss';
 
 class App extends React.Component{
   state = {
-    theme: 'light',
-    startNewSearch: false,
-    searchInfo: {},
-    showMoviesList: false,
+    shouldStartNewSearch: false,
+    searchData: {},
+    shouldRenderMoviesList: false,
+    theme: 'light'
   }
 
 
@@ -25,28 +25,31 @@ class App extends React.Component{
 
   startSearching = async (data) => {
     this.setState({
-      startNewSearch: true,
-      searchData: data
+      shouldStartNewSearch: true,
+      searchData: {
+        ...data,
+        API_KEY: 'fa254bc5'
+      }
     });
   }
 
 
   render() {
-    const { showMoviesList, searchData, startNewSearch } = this.state;
+    const { shouldRenderMoviesList, searchData, shouldStartNewSearch } = this.state;
 
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
         <ThemeToggler handleToggle={this.toggleTheme} />
         <SearchBar handleSearch={() => {
           this.startSearching();
-          this.setState({ showMoviesList: true })
+          this.setState({ shouldRenderMoviesList: true })
         }}/>
 
-        {showMoviesList &&
+        {shouldRenderMoviesList &&
         <MoviesList
           data={searchData}
-          startNewSearch={startNewSearch}
-          handleSeachStart={ () => this.setState({ startNewSearch: false }) }
+          shouldStartNewSearch={shouldStartNewSearch}
+          handleSearchStart={ () => this.setState({ shouldStartNewSearch: false }) }
         />
         }
       </main>

@@ -16,7 +16,7 @@
         border-radius: 5px;
 
         @include themify() {
-            box-shadow: 0 0 5px themed('searchbar-shadow-color');
+            box-shadow: 0 0 5px themed('main-theme-color');
             background-color: themed('searchbar-background');
         }
 
