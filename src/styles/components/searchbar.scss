@@ -2,7 +2,8 @@
 
 @mixin styling($def-size) {
     .searchbar {
-        position: absolute;
+        position: fixed;
+        z-index: 10;
         top: 10px;
         right: 130px;
 
