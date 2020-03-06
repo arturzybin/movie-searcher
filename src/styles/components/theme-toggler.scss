@@ -85,6 +85,7 @@
 @media screen and (max-width: 1000px) {
    .theme-toggler {
       font-size: 25px;
+
       top: 17px;
    }
 }
@@ -92,15 +93,17 @@
 
 @media screen and (max-width: 700px) {
    .theme-toggler {
-      top: 16px;
       font-size: 20px;
+
+      top: 16px;
    }
 }
 
 @media screen and (max-width: 400px) {
    .theme-toggler {
-      top: 20px;
       font-size: 15px;
+
+      top: 20px;
       right: 10px;
    }
 }
