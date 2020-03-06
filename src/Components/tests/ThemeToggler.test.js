@@ -5,11 +5,11 @@ import App from '../../App';
 
 
 describe('ThemeToggler should toggle app theme', () => {
-   it('should have light theme by default', () => {
+   it('should have dark theme by default', () => {
       const wrapper = mount(<App />);
 
-      expect(wrapper.find('#app-root').hasClass('theme-light')).toBe(true);
-      expect(wrapper.find('#app-root').hasClass('theme-dark')).toBe(false);
+      expect(wrapper.find('#app-root').hasClass('theme-light')).toBe(false);
+      expect(wrapper.find('#app-root').hasClass('theme-dark')).toBe(true);
    })
 
 
