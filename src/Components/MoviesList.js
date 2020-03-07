@@ -14,20 +14,8 @@ function MoviesList(props) {
       if (props.shouldStartNewSearch) {
          startNewSearch();
       }
+      // eslint-disable-next-line
    }, [props.shouldStartNewSearch])
-
-
-   async function loadNextPage() {
-      const nextPageNumber = loadedPagesCount + 1;
-      const response = await fetch(
-         `${process.env.PUBLIC_URL}search_response_${nextPageNumber}page.json`);
-      const data = await response.json();
-
-      setLoadedMoviesCount(loadedMoviesCount + data.Search.length);
-      setTotalMoviesCount(data.totalResults);
-      setLoadedMovies([...loadedMovies, ...data.Search]);
-      setLoadedPagesCount(nextPageNumber);
-   }
 
 
    function startNewSearch() {
@@ -45,6 +33,23 @@ function MoviesList(props) {
    }
 
 
+   async function loadNextPage() {
+      const nextPageNumber = loadedPagesCount + 1;
+      const response = await fetch(
+         `${process.env.PUBLIC_URL}search_response_${nextPageNumber}page.json`);
+      const data = await response.json();
+
+      setLoadedMoviesCount(loadedMoviesCount + data.Search.length);
+      setTotalMoviesCount(20);
+      setLoadedMovies([...loadedMovies, ...data.Search]);
+      setLoadedPagesCount(nextPageNumber);
+
+      if (totalMoviesCount === loadedMoviesCount) {
+
+      }
+   }
+
+
    function renderMoviesList() {
       return loadedMovies.map((movieData) => <Movie data={movieData} key={movieData.imdbID} />)
    }
@@ -55,7 +60,11 @@ function MoviesList(props) {
          <div className="movies-list__movies-container">
             {renderMoviesList()}
          </div>
-         <button className="movies-list__show-more-button" onClick={loadNextPage}>Show more</button>
+         {
+            totalMoviesCount === loadedMoviesCount ? 
+            <button className="movies-list__movies-over">That's all</button> :
+            <button className="movies-list__show-more-button" onClick={loadNextPage}>Show more</button>
+         }
       </div>
    )
 }

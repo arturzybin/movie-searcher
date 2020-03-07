@@ -58,6 +58,50 @@
          box-shadow: none !important;
       }
    }
+
+   &__movies-over {
+      @include themify() {
+         color: themed('text-color');
+         box-shadow: 0 0 10px themed('main-theme-color');
+      }
+
+      font-size: 20px;
+      border: none;
+      font-weight: bold;
+
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      left: 0;
+
+      margin: auto;
+      padding: 8px 12px;
+      outline: none;
+
+      border-radius: 8px;
+      background: none;
+      animation: vibrate 1.5s linear infinite both;
+   }
+   @keyframes vibrate {
+      0% {
+                transform: translate(0);
+      }
+      20% {
+                transform: translate(-1px, 1px);
+      }
+      40% {
+                transform: translate(-1px, -1px);
+      }
+      60% {
+                transform: translate(1px, 1px);
+      }
+      80% {
+                transform: translate(1px, -1px);
+      }
+      100% {
+                transform: translate(0);
+      }
+    }
 }
 
 @media screen and (max-width: 1400px) {
