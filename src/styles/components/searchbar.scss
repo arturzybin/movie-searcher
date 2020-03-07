@@ -114,7 +114,7 @@
    .searchbar {
       right: 110px;
       &_centered {
-         right: 0;
+         right: 10px;
       }
    }
 }
@@ -126,7 +126,7 @@
 
       width: 80%;
       &_centered {
-         right: 0;
+         right: 10px;
       }
    }
 }
@@ -135,6 +135,10 @@
 @media screen and (max-width: 400px) {
    .searchbar {
       right: 65px;
+
+      &_centered {
+         right: 10px;
+      }
    }
 }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import Movie from './Movie';
+
 
 function MoviesList(props) {
    const [loadedMoviesCount, setLoadedMoviesCount] = useState(0);
@@ -44,24 +46,7 @@ function MoviesList(props) {
 
 
    function renderMoviesList() {
-      const moviesTemplate = [];
-
-      for (let movieData of loadedMovies) {
-         const movie = (
-            <div key={movieData.imdbID}>
-               <div className='movies-list__movie'>
-                  <img className="movies-list__poster" src={movieData.Poster} alt="poster" />
-                  <h2 className="movies-list__title">{movieData.Title}</h2>
-                  <div className="movies-list__year movies-list__info">{movieData.Year}</div>
-                  <div className="movies-list__type movies-list__info">{movieData.Type}</div>
-               </div>
-            </div>
-         )
-
-         moviesTemplate.push(movie)
-      }
-
-      return moviesTemplate;
+      return loadedMovies.map((movieData) => <Movie data={movieData} key={movieData.imdbID} />)
    }
 
 
