@@ -1,9 +1,24 @@
+.movie-locker {
+   @include themify() {
+      background-color: themed('movie-background-color');
+   }
+   position: fixed;
+   backdrop-filter: blur(6px);
+   z-index: 5;
+   top: 0;
+   left: 0;
+
+   overflow: scroll;
+
+   width: 100vw;
+   height: 100vh;
+   padding-top: 80px;
+}
+
 .movie {
    @include themify() {
       border: 1px solid themed('main-theme-color');
-   }
-
-   position: relative;
+   }  position: relative;
 
    overflow: hidden;
 
@@ -27,9 +42,7 @@
    &__title {
       @include themify() {
          color: themed('text-color');
-      }
-
-      margin: 15px 0 50px;
+      }  margin: 15px 0 50px;
 
       text-align: center;
 
@@ -38,7 +51,7 @@
       }
    }
 
-   &__info {
+   &__label {
       font-weight: bold;
 
       position: absolute;
@@ -46,19 +59,122 @@
 
       padding: 1px 2px;
 
-      color: #6c5ce7;
       border: 2px solid;
       border-radius: 5px;
    }
 
    &__year {
       left: 50px;
+
+      color: #6c5ce7;
    }
 
    &__type {
       right: 50px;
 
       color: #e17055;
-      border-color: #e17055;
+   }
+}
+
+
+.movie_opened {
+   @include themify() {
+      color: themed('text-color');
+      background-color: themed('root-background-color');
+   }  width: 90%;
+   margin: auto;
+
+   cursor: default;
+}
+.movie_opened .movie {
+   &__close-full-info-button {
+      font-size: 40px;
+
+      position: absolute;
+      top: -5px;
+      left: -5px;
+
+      cursor: pointer;
+
+      color: red;
+      border: none;
+      background: none;
+      &:focus {
+         outline: 1px solid #26b4d9;
+      }
+      &:hover {
+         font-size: 41px;
+      }
+   }
+
+   &__poster {
+      float: left;
+
+      width: calc(40% + 5px);
+      padding-right: 5px;
+
+      transform: none !important;
+   }
+
+   &__title {
+      display: inline-block;
+
+      width: calc(60% - 95px);
+      margin: 15px 80px 25px 10px;
+
+      vertical-align: top;
+      text-decoration: none;
+   }
+
+   &__year {
+      display: none;
+   }
+
+   &__type {
+      top: 5px;
+      right: 5px;
+      bottom: auto;
+   }
+
+   &__runtime {
+      top: 35px;
+      right: 5px;
+      bottom: auto;
+
+      color: #6c5ce7;
+   }
+
+   &__common-info {
+      margin-bottom: 8px;
+      padding-left: 5px;
+   }
+
+   &__common-info-title {
+      @include themify() {
+         color: themed('main-theme-color');
+      }
+   }
+
+   &__rating {
+      @include themify() {
+         color: themed('rating-color');
+      }
+      text-decoration: underline;
+   }
+}
+
+@media screen and (max-width: 550px) {
+   .movie_opened .movie {
+      &__close-full-info-button {
+         font-size: 30px;
+      }
+      &__poster {
+         display: none;
+      }
+
+      &__title {
+         margin-left: 20px;
+         width: calc(100% - 90px);
+      }
    }
 }
