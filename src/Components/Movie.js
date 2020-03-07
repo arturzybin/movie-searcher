@@ -21,9 +21,11 @@ class Movie extends React.PureComponent {
    }
 
 
-   openFullInfo = () => {
+   openFullInfo = (e) => {
+      e.stopPropagation();
+
       if (this.state.isFullInfoOpened) return;
-      
+
       if (!this.state.isFullDataLoaded) {
          this.loadFullData();
       }
@@ -31,7 +33,9 @@ class Movie extends React.PureComponent {
    }
 
    closeFullInfo = () => {
-      this.setState({ isFullInfoOpened: false });
+      if (this.state.isFullInfoOpened) {
+         this.setState({ isFullInfoOpened: false });
+      }
    }
 
 
@@ -94,7 +98,7 @@ class Movie extends React.PureComponent {
 
       return (
          <div>
-            <div className={isFullInfoOpened ? 'movie-locker' : ''}>
+            <div className={isFullInfoOpened ? 'movie-locker' : ''} onClick={this.closeFullInfo}>
                <div
                   className={isFullInfoOpened ? 'movie movie_opened' : 'movie'}
                   onClick={this.openFullInfo}

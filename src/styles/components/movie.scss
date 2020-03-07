@@ -1,30 +1,36 @@
 .movie-locker {
-   @include themify() {
-      background-color: themed('movie-background-color');
-   }
    position: fixed;
-   backdrop-filter: blur(6px);
    z-index: 5;
    top: 0;
    left: 0;
 
-   overflow: scroll;
+   overflow: hidden;
 
    width: 100vw;
    height: 100vh;
    padding-top: 80px;
+
+   cursor: pointer;
+
+   @include themify() {
+      background-color: themed('movie-background-color');
+   }  backdrop-filter: blur(6px);
 }
 
+
+//------------------------------------------------------------------------
 .movie {
-   @include themify() {
-      border: 1px solid themed('main-theme-color');
-   }  position: relative;
+   position: relative;
 
    overflow: hidden;
 
    cursor: pointer;
 
    border-radius: 10px;
+
+   @include themify() {
+      border: 1px solid themed('main-theme-color');
+   }
 
    &:hover .movie__poster {
       transition-duration: .2s;
@@ -40,11 +46,13 @@
    }
 
    &__title {
-      @include themify() {
-         color: themed('text-color');
-      }  margin: 15px 0 50px;
+      margin: 15px 0 50px;
 
       text-align: center;
+
+      @include themify() {
+         color: themed('text-color');
+      }
 
       &:hover {
          text-decoration: underline;
@@ -76,15 +84,32 @@
    }
 }
 
+@media screen and (max-width: 300px) {
+   .movie {
+      &__year {
+         left: 20px;
+      }
+      &__type {
+         right: 20px;
+      }
+   }
+}
 
+
+
+
+//---------------------------------------------------------------------
 .movie_opened {
-   @include themify() {
-      color: themed('text-color');
-      background-color: themed('root-background-color');
-   }  width: 90%;
+   width: 90%;
+   max-height: calc(100vh - 120px);
    margin: auto;
 
    cursor: default;
+
+   @include themify() {
+      color: themed('text-color');
+      background-color: themed('root-background-color');
+   }
 }
 .movie_opened .movie {
    &__close-full-info-button {
@@ -123,7 +148,7 @@
       margin: 15px 80px 25px 10px;
 
       vertical-align: top;
-      text-decoration: none;
+      text-decoration: underline;
    }
 
    &__year {
@@ -156,10 +181,11 @@
    }
 
    &__rating {
+      text-decoration: underline;
+
       @include themify() {
          color: themed('rating-color');
       }
-      text-decoration: underline;
    }
 }
 
@@ -168,13 +194,31 @@
       &__close-full-info-button {
          font-size: 30px;
       }
-      &__poster {
-         display: none;
-      }
-
       &__title {
-         margin-left: 20px;
-         width: calc(100% - 90px);
+         margin-top: 10px;
+         margin-bottom: 10px;
+      }
+   }
+}
+
+@media screen and (max-width: 350px) {
+   .movie_opened .movie {
+      &__label {
+         font-size: 10px;
+      }
+      &__type {
+         top: 15px;
+      }
+      &__runtime {
+         top: 40px;
+      }
+   }
+}
+
+@media screen and (max-width: 255px) {
+   .movie_opened .movie {
+      &__label {
+         font-size: 7px;
       }
    }
 }

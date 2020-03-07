@@ -2,23 +2,22 @@
 
 @mixin styling($def-size) {
    .searchbar {
-      @include themify() {
-         background-color: themed('searchbar-background-color');
-         box-shadow: 0 0 5px themed('main-theme-color');
-      }
-
       position: fixed;
       z-index: 10;
       top: 10px;
       right: 130px;
 
       width: 50%;
-      min-width: 300px;
       height: $def-size;
       margin: auto;
       padding: 0 5px;
 
       border-radius: 5px;
+
+      @include themify() {
+         background-color: themed('searchbar-background-color');
+         box-shadow: 0 0 5px themed('main-theme-color');
+      }
 
       &_centered {
          position: absolute;
@@ -30,10 +29,6 @@
       }
 
       &__input {
-         @include themify() {
-            color: themed('text-color');
-         }
-
          font-size: 20px;
          line-height: $def-size;
 
@@ -42,13 +37,13 @@
          border: none;
          outline: none;
          background-color: transparent;
+
+         @include themify() {
+            color: themed('text-color');
+         }
       }
 
       &__button {
-         @include themify() {
-            filter: themed('searchbar-buttons-filter');
-         }
-
          position: absolute;
 
          width: $def-size;
@@ -61,6 +56,10 @@
          background-color: transparent;
          background-repeat: no-repeat;
          background-position: 50% 50%;
+
+         @include themify() {
+            filter: themed('searchbar-buttons-filter');
+         }
 
          &:focus {
             outline: 1px solid #26b4d9;
@@ -134,7 +133,7 @@
 
 @media screen and (max-width: 400px) {
    .searchbar {
-      right: 65px;
+      right: 45px;
 
       &_centered {
          right: 10px;

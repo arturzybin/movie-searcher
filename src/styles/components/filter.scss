@@ -1,12 +1,6 @@
 @import '../themes';
 
-.filter {
-   @include themify() {
-      background-color: themed('searchbar-background');
-      box-shadow: 0 0 5px themed('searchbar-shadow-color');
-   }
-
-   position: absolute;
+.filter { position: absolute;
    right: 0;
    left: 0;
 
@@ -17,6 +11,11 @@
    transition-duration: .5s;
 
    border-radius: 5px;
+
+   @include themify() {
+      background-color: themed('searchbar-background');
+      box-shadow: 0 0 5px themed('searchbar-shadow-color');
+   } 
 
    &_closed {
       visibility: hidden;
@@ -67,15 +66,13 @@
          margin-left: auto;
       }
    }
-   select {
-      @include themify() {
-         color: themed('text-color');
-      }
-
-      padding: 0 .5em;
+   select { padding: 0 .5em;
 
       cursor: pointer;
 
+      @include themify() {
+         color: themed('text-color');
+      } 
       flex: 1;
 
       option {
