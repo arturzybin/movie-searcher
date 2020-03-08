@@ -3,6 +3,7 @@
 .movie_opened {
    width: 90%;
    max-height: calc(100vh - 120px);
+   min-height: 30vh;
    margin: auto;
 
    cursor: default;
