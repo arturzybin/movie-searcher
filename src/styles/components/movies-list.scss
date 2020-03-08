@@ -5,16 +5,16 @@
 
    width: 65%;
    margin: auto;
-   padding-top: 100px;
+   padding-top: 6.25rem;
 
 
    &__movies-container {
       display: grid;
 
-      padding-bottom: 100px;
+      padding-bottom: 6.25rem;
 
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 40px 25px;
+      grid-gap: 2.5rem 1.5625rem;
    }
 
 
@@ -24,7 +24,7 @@
       right: 0;
       left: 0;
 
-      width: 50px;
+      width: 3.125rem;
       margin: auto;
 
       div {
@@ -33,13 +33,13 @@
          display: block;
 
          box-sizing: border-box;
-         width: 64px;
-         height: 64px;
-         margin: 8px;
+         width: 4rem;
+         height: 4rem;
+         margin: 0.5rem;
 
          animation: lds-ring 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
 
-         border: 8px solid #fff;
+         border: 0.5rem solid #fff;
          border-radius: 50%;
 
          @include themify() {
@@ -68,36 +68,36 @@
 
 
    &__show-more-button {
-      font-size: 20px;
+      font-size: 1.25rem;
       font-weight: bold;
 
       position: absolute;
       right: 0;
-      bottom: 20px;
+      bottom: 1.25rem;
       left: 0;
 
       margin: auto;
-      padding: 8px 12px;
+      padding: .5rem .75rem;
 
       cursor: pointer;
 
-      border-radius: 8px;
+      border-radius: .5rem;
       background: none;
 
       @include themify() {
          color: themed('text-color');
-         border: 2px solid themed('main-theme-color');
+         border: .125rem solid themed('main-theme-color');
       }
 
       &:focus {
-         outline: 1px solid #26b4d9;
+         outline: .0625rem solid #26b4d9;
       }
 
       &:hover {
          transition-duration: .1s;
 
          @include themify() {
-            box-shadow: 0 0 7px themed('main-theme-color');
+            box-shadow: 0 0 .4375rem themed('main-theme-color');
          }
       }
 
@@ -108,28 +108,28 @@
       }
    }
 
-   &__movies-over {
-      font-size: 20px;
+   &__movies-end {
+      font-size: 1.25rem;
       font-weight: bold;
 
       position: absolute;
       right: 0;
-      bottom: 20px;
+      bottom: 1.25rem;
       left: 0;
 
       margin: auto;
-      padding: 8px 12px;
+      padding: .5rem .75rem;
 
       animation: vibrate 1.5s linear infinite both;
 
       border: none;
-      border-radius: 8px;
+      border-radius: .5rem;
       outline: none;
       background: none;
 
       @include themify() {
          color: themed('text-color');
-         box-shadow: 0 0 10px themed('main-theme-color');
+         box-shadow: 0 0 .625rem themed('main-theme-color');
       }
    }
    @keyframes vibrate {
@@ -137,16 +137,16 @@
          transform: translate(0);
       }
       20% {
-         transform: translate(-1px, 1px);
+         transform: translate(-.0625rem, .0625rem);
       }
       40% {
-         transform: translate(-1px, -1px);
+         transform: translate(-.0625rem, -.0625rem);
       }
       60% {
-         transform: translate(1px, 1px);
+         transform: translate(.0625rem, .0625rem);
       }
       80% {
-         transform: translate(1px, -1px);
+         transform: translate(.0625rem, -.0625rem);
       }
       100% {
          transform: translate(0);

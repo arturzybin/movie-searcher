@@ -5,24 +5,24 @@
    right: 0;
    left: 0;
 
-   width: 300px;
+   width: 18.75rem;
    margin: auto;
-   margin-top: 5px;
+   margin-top: .3125rem;
 
    transition-duration: .5s;
 
-   border-radius: 5px;
+   border-radius: .3125rem;
 
    @include themify() {
       background-color: themed('searchbar-background-color');
-      box-shadow: 0 0 5px themed('main-theme-color');
+      box-shadow: 0 0 .3125rem themed('main-theme-color');
    }
 
    &_closed {
       visibility: hidden;
 
       transition-duration: .5s;
-      transform: translateY(-200px) rotate(20deg);
+      transform: translateY(-12.5rem) rotate(20deg);
 
       opacity: 0;
    }
@@ -57,9 +57,9 @@
 
       width: 15em;
       height: 2em;
-      margin: 10px 5px;
+      margin: .625rem .3125rem;
 
-      border: 1px solid #ff75b9;
+      border: .0625rem solid #ff75b9;
       border-radius: .25em;
 
       &:nth-child(2) {

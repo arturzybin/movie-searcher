@@ -1,7 +1,7 @@
 @import '../themes';
 
 .error-message {
-   font-size: 40px;
+   font-size: 2.5rem;
 
    position: absolute;
    top: 30%;
@@ -18,13 +18,13 @@
 
    @include themify() {
       color: themed('text-color');
-      text-shadow: 2px 3px 0 themed('main-theme-color'), 2px 3px 10px themed('main-theme-color');
+      text-shadow: .125rem 3px 0 themed('main-theme-color'), .125rem 3px .625rem themed('main-theme-color');
    }
 
    &_size_small {
       width: 40%;
 
-      border-radius: 30px;
+      border-radius: 1.875rem;
 
       backdrop-filter: blur(4px);
    }
@@ -32,7 +32,7 @@
 
 @media screen and (max-width: 500px) {
    .error-message_size_small {
-      font-size: 20px;
+      font-size: 1.25rem;
 
       width: 50%;
    }

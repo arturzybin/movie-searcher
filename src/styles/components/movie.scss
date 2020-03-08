@@ -10,13 +10,13 @@
 
    width: 100vw;
    height: 100vh;
-   padding-top: 80px;
+   padding-top: 5rem;
 
    cursor: pointer;
 
    @include themify() {
       background-color: themed('movie-background-color');
-   }  backdrop-filter: blur(6px);
+   }  backdrop-filter: blur(.375rem);
 }
 
 
@@ -28,10 +28,10 @@
 
    cursor: pointer;
 
-   border-radius: 10px;
+   border-radius: .625rem;
 
    @include themify() {
-      border: 1px solid themed('main-theme-color');
+      border: .0625rem solid themed('main-theme-color');
    }
 
    &:hover .movie__poster {
@@ -48,7 +48,7 @@
    }
 
    &__poster-replacer {
-      height: 300px;
+      height: 18.75rem;
 
       background-image: url(../../img/poster-not-found.svg);
       background-repeat: no-repeat;
@@ -61,7 +61,7 @@
    }
 
    &__title {
-      margin: 15px 0 50px;
+      margin: .9375rem 0 3.125rem;
 
       text-align: center;
 
@@ -78,22 +78,22 @@
       font-weight: bold;
 
       position: absolute;
-      bottom: 10px;
+      bottom: .625rem;
 
-      padding: 1px 2px;
+      padding: .0625rem .125rem;
 
-      border: 2px solid;
-      border-radius: 5px;
+      border: .125rem solid;
+      border-radius: .3125rem;
    }
 
    &__year {
-      left: 50px;
+      left: 3.125rem;
 
       color: #6c5ce7;
    }
 
    &__type {
-      right: 50px;
+      right: 3.125rem;
 
       color: #e17055;
    }
@@ -102,10 +102,10 @@
 @media screen and (max-width: 300px) {
    .movie {
       &__year {
-         left: 20px;
+         left: 1.25rem;
       }
       &__type {
-         right: 20px;
+         right: 1.25rem;
       }
    }
 }

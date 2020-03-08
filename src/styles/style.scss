@@ -18,6 +18,25 @@
 }
 
 
+@media screen and (min-width: 2500px) {
+   html {
+      font-size: 21px;
+   }
+}
+
+@media screen and (min-width: 3000px) {
+   html {
+      font-size: 30px;
+   }
+}
+
+@media screen and (min-width: 4000px) {
+   html {
+      font-size: 42px;
+   }
+}
+
+
 @import './components/searchbar';
 @import './components/theme-toggler';
 @import './components/filter';

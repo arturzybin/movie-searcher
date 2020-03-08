@@ -108,7 +108,7 @@ function MoviesList(props) {
          return <div className="movies-list__loading" >  <div></div><div></div><div></div><div></div>  </div>
       }
       if (totalMoviesCount === loadedMoviesCount) {
-         return <button className="movies-list__movies-over">That's all</button>
+         return <button className="movies-list__movies-end">That's all</button>
       }
 
       return (

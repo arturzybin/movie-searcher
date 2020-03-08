@@ -2,7 +2,7 @@
 
 .movie_opened {
    width: 90%;
-   max-height: calc(100vh - 120px);
+   max-height: calc(100vh - 7.5rem);
    min-height: 30vh;
    margin: auto;
 
@@ -15,11 +15,11 @@
 }
 .movie_opened .movie {
    &__close-full-info-button {
-      font-size: 40px;
+      font-size: 2.5rem;
 
       position: absolute;
-      top: -5px;
-      left: -5px;
+      top: -0.3125rem;
+      left: -0.3125rem;
 
       cursor: pointer;
 
@@ -27,18 +27,18 @@
       border: none;
       background: none;
       &:focus {
-         outline: 1px solid #26b4d9;
+         outline: .0625rem solid #26b4d9;
       }
       &:hover {
-         font-size: 41px;
+         font-size: 2.5625rem;
       }
    }
 
    &__poster {
       float: left;
 
-      width: calc(40% + 5px);
-      padding-right: 5px;
+      width: calc(40% + .3125rem);
+      padding-right: .3125rem;
 
       transform: none !important;
    }
@@ -47,15 +47,15 @@
       display: none;
 
       & ~ .movie__title {
-         width: calc(100% - 95px);
+         width: calc(100% - 5.9375rem);
       }
    }
 
    &__title {
       display: inline-block;
 
-      width: calc(60% - 95px);
-      margin: 15px 80px 25px 10px;
+      width: calc(60% - 5.9375rem);
+      margin: .9375rem 5rem 1.5625rem .625rem;
 
       vertical-align: top;
       text-decoration: underline;
@@ -66,25 +66,25 @@
    }
 
    &__type {
-      top: 5px;
-      right: 5px;
+      top: .3125rem;
+      right: .3125rem;
       bottom: auto;
    }
 
    &__runtime {
-      top: 35px;
-      right: 5px;
+      top: 2.1875rem;
+      right: .3125rem;
       bottom: auto;
 
       color: #6c5ce7;
    }
 
    &__common-info {
-      font-size: 20px;
+      font-size: 1.25rem;
 
-      margin-bottom: 8px;
-      padding-right: 100px;
-      padding-left: 5px;
+      margin-bottom: .5rem;
+      padding-right: 6.25rem;
+      padding-left: .3125rem;
    }
 
    &__common-info-title {
@@ -106,7 +106,7 @@
 @media screen and (max-width: 1000px) {
    .movie_opened .movie {
       &__common-info {
-         padding-right: 30px;
+         padding-right: 1.875rem;
       }
    }
 }
@@ -114,14 +114,15 @@
 @media screen and (max-width: 550px) {
    .movie_opened .movie {
       &__close-full-info-button {
-         font-size: 30px;
+         font-size: 1.875rem;
       }
       &__title {
-         margin-top: 10px;
-         margin-bottom: 10px;
+         margin-top: .625rem;
+         margin-bottom: .625rem;
+         font-size: 1.3rem;
       }
       &__common-info {
-         font-size: 17px;
+         font-size: 1.0625rem;
       }
    }
 }
@@ -129,21 +130,23 @@
 @media screen and (max-width: 350px) {
    .movie_opened .movie {
       &__label {
-         font-size: 10px;
+         font-size: .625rem;
       }
       &__type {
-         top: 15px;
+         top: .3125rem;
       }
       &__runtime {
-         top: 40px;
+         top: 1.5625rem;
+      }
+      &__title {
+         font-size: 1.1rem;
       }
       &__poster-replacer ~ .movie__title{
-         margin-right: 20px;
-         margin-left: 20px;
-         width: calc(100% - 65px);
+         margin-left: 1.25rem;
+         width: calc(100% - 5.3125rem);
       }
       &__common-info {
-         padding-right: 10px;
+         padding-right: .625rem;
       }
    }
 }
@@ -151,7 +154,7 @@
 @media screen and (max-width: 255px) {
    .movie_opened .movie {
       &__label {
-         font-size: 7px;
+         font-size: .4375rem;
       }
    }
 }

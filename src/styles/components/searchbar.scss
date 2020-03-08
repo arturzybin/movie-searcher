@@ -1,22 +1,23 @@
 @import '../themes';
 
-@mixin styling($def-size) {
+
+@mixin styling($base-size) {
    .searchbar {
       position: fixed;
       z-index: 10;
-      top: 10px;
-      right: 130px;
+      top: .625rem;
+      right: 8.175rem;
 
       width: 50%;
-      height: $def-size;
+      height: $base-size;
       margin: auto;
-      padding: 0 5px;
+      padding: 0 .3125rem;
 
-      border-radius: 5px;
+      border-radius: .3125rem;
 
       @include themify() {
          background-color: themed('searchbar-background-color');
-         box-shadow: 0 0 5px themed('main-theme-color');
+         box-shadow: 0 0 .3125rem themed('main-theme-color');
       }
 
       &_centered {
@@ -29,10 +30,10 @@
       }
 
       &__input {
-         font-size: 20px;
-         line-height: $def-size;
+         font-size: 1.25rem;
+         line-height: $base-size;
 
-         width: calc(100% - #{$def-size}*2);
+         width: calc(100% - #{$base-size}*2);
 
          border: none;
          outline: none;
@@ -46,8 +47,8 @@
       &__button {
          position: absolute;
 
-         width: $def-size;
-         height: $def-size;
+         width: $base-size;
+         height: $base-size;
 
          cursor: pointer;
 
@@ -62,7 +63,7 @@
          }
 
          &:focus {
-            outline: 1px solid #26b4d9;
+            outline: .0625rem solid #26b4d9;
          }
 
          &:hover {
@@ -71,7 +72,7 @@
       }
 
       &__filter-button {
-         right: $def-size;
+         right: $base-size;
 
          transition-duration: .3s;
          transform: rotate(90deg);
@@ -101,7 +102,8 @@
    }
 }
 
-@include styling($def-size: 50px);
+@include styling($base-size: 3.125rem);
+
 
 @media screen and (max-width: 1300px) {
    .searchbar {
@@ -111,21 +113,21 @@
 
 @media screen and (max-width: 1000px) {
    .searchbar {
-      right: 110px;
+      right: 6.875rem;
       &_centered {
-         right: 10px;
+         right: .625rem;
       }
    }
 }
 
 @media screen and (max-width: 700px) {
-   @include styling($def-size: 40px);
+   @include styling($base-size: 40px);
    .searchbar {
-      right: 90px;
+      right: 5.625rem;
 
       width: 80%;
       &_centered {
-         right: 10px;
+         right: .625rem;
       }
    }
 }
@@ -133,10 +135,10 @@
 
 @media screen and (max-width: 400px) {
    .searchbar {
-      right: 45px;
+      right: 2.8125rem;
 
       &_centered {
-         right: 10px;
+         right: .625rem;
       }
    }
 }
@@ -144,7 +146,7 @@
 
 @media (orientation: portrait) {
    .searchbar {
-      left: 10px;
+      left: .625rem;
 
       width: auto;
    }
