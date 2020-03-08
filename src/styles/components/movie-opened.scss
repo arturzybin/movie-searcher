@@ -155,3 +155,9 @@
       }
    }
 }
+
+@media (orientation: portrait) {
+   .movie_opened {
+      overflow: auto;
+   }
+}
