@@ -93,10 +93,10 @@ function MoviesList(props) {
 
 
    function renderMoviesList() {
-      return loadedMovies.map((movieData) => (
+      return loadedMovies.map((movieData, index) => (
          <Movie
             data={{ ...movieData, API_KEY: props.data.API_KEY }}
-            key={movieData.imdbID}
+            key={movieData.imdbID + index}
          />
       ))
    }
