@@ -84,7 +84,7 @@ function MoviesList(props) {
       if (errorMessage === 'Movie not found!' || errorMessage === 'Check your connection') {
          setErrorMessage(errorMessage)
       } else if (errorMessage === 'Too many results.') {
-         setErrorMessage('Too many results, your request must be more specific')
+         setErrorMessage('Too many results, specify your request')
       } else {
          console.log(errorMessage)
          setErrorMessage('Something went wrong...');
