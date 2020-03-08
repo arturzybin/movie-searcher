@@ -65,7 +65,6 @@ class Movie extends React.PureComponent {
          this.setState({ isFullInfoOpened: false });
       }
       window.onpopstate = null;
-      window.history.pushState(null, null, "?page=movies-list")
    }
 
 

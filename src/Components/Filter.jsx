@@ -16,7 +16,8 @@ function Filter(props) {
             </select>
          </div>
 
-         <div className="filter__select">
+         {/* maybe in future, paid version of api needed */}
+         {/* <div className="filter__select">
             <select name="genre" onChange={(e) => props.handleGenreChange(e.target.value)}>
                <option value="">Select genre</option>
                <option>Action</option>
@@ -34,7 +35,7 @@ function Filter(props) {
                <option>War</option>
                <option>Western</option>
             </select>
-         </div>
+         </div> */}
 
          <div className="filter__select">
             <select name="year" onChange={(e) => props.handleYearChange(e.target.value)}>
