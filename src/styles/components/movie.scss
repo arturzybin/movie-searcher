@@ -1,3 +1,5 @@
+@import '../themes';
+
 .movie-locker {
    position: fixed;
    z-index: 5;
@@ -18,7 +20,7 @@
 }
 
 
-//------------------------------------------------------------------------
+
 .movie {
    position: relative;
 
@@ -104,155 +106,6 @@
       }
       &__type {
          right: 20px;
-      }
-   }
-}
-
-
-
-
-//---------------------------------------------------------------------
-.movie_opened {
-   width: 90%;
-   max-height: calc(100vh - 120px);
-   margin: auto;
-
-   cursor: default;
-
-   @include themify() {
-      color: themed('text-color');
-      background-color: themed('root-background-color');
-   }
-}
-.movie_opened .movie {
-   &__close-full-info-button {
-      font-size: 40px;
-
-      position: absolute;
-      top: -5px;
-      left: -5px;
-
-      cursor: pointer;
-
-      color: red;
-      border: none;
-      background: none;
-      &:focus {
-         outline: 1px solid #26b4d9;
-      }
-      &:hover {
-         font-size: 41px;
-      }
-   }
-
-   &__poster {
-      float: left;
-
-      width: calc(40% + 5px);
-      padding-right: 5px;
-
-      transform: none !important;
-   }
-
-   &__poster-replacer {
-      display: none;
-   }
-
-   &__title {
-      display: inline-block;
-
-      width: calc(60% - 95px);
-      margin: 15px 80px 25px 10px;
-
-      vertical-align: top;
-      text-decoration: underline;
-   }
-
-   &__year {
-      display: none;
-   }
-
-   &__type {
-      top: 5px;
-      right: 5px;
-      bottom: auto;
-   }
-
-   &__runtime {
-      top: 35px;
-      right: 5px;
-      bottom: auto;
-
-      color: #6c5ce7;
-   }
-
-   &__common-info {
-      font-size: 20px;
-
-      margin-bottom: 8px;
-      padding-right: 100px;
-      padding-left: 5px;
-   }
-
-   &__common-info-title {
-      @include themify() {
-         color: themed('main-theme-color');
-      }
-   }
-
-   &__rating {
-      text-decoration: underline;
-
-      @include themify() {
-         color: themed('rating-color');
-      }
-   }
-}
-
-@media screen and (max-width: 1000px) {
-   .movie_opened .movie {
-      &__common-info {
-         padding-right: 30px;
-      }
-   }
-}
-
-@media screen and (max-width: 550px) {
-   .movie_opened .movie {
-      &__close-full-info-button {
-         font-size: 30px;
-      }
-      &__title {
-         margin-top: 10px;
-         margin-bottom: 10px;
-      }
-      &__common-info {
-         font-size: 17px;
-      }
-   }
-}
-
-@media screen and (max-width: 350px) {
-   .movie_opened .movie {
-      &__label {
-         font-size: 10px;
-      }
-      &__type {
-         top: 15px;
-      }
-      &__runtime {
-         top: 40px;
-      }
-      &__common-info {
-         padding-right: 10px;
-      }
-   }
-}
-
-@media screen and (max-width: 255px) {
-   .movie_opened .movie {
-      &__label {
-         font-size: 7px;
       }
    }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import FullMovieInfo from './FullMovieInfo';
+
 
 class Movie extends React.PureComponent {
    state = {
       isFullDataLoaded: false,
-      fullData: null,
+      fullData: [],
       isFullInfoOpened: false,
       isError: false
    }
@@ -22,13 +24,13 @@ class Movie extends React.PureComponent {
          return;
       }
 
-
       if (this.state.isError) this.setState({ isError: false });
       this.setState({
          isFullDataLoaded: true,
          fullData: data
       })
    }
+
 
    createURL = () => {
       const { API_KEY } = this.props.data;//
@@ -54,84 +56,13 @@ class Movie extends React.PureComponent {
       this.setState({ isFullInfoOpened: true });
    }
 
+
    closeFullInfo = () => {
       if (this.state.isFullInfoOpened) {
          this.setState({ isFullInfoOpened: false });
       }
    }
 
-
-   renderFullInfo = () => {
-      if (this.state.isError) {
-         return this.renderErrorMessage();
-      }
-
-      const { fullData: data } = this.state;
-
-      let ratings = data.Ratings.map((rating) => (
-         <span key={rating.Source}>
-            {rating.Source}:{' '}
-            <span className='movie__rating'>{rating.Value}</span>{', '}
-         </span>
-      )
-      )
-      if (!ratings.length) {
-         ratings = 'N/A'
-      };
-
-      return (
-         <>
-            <button
-               className="movie__close-full-info-button"
-               onClick={this.closeFullInfo}
-            >&#10008;</button>
-
-            <div className="movie__runtime movie__label">{data.Runtime}</div>
-            <div className="movie__common-info">{data.Plot}</div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Genre: </span>
-               {data.Genre}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Released: </span>
-               {data.Released}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Actors: </span>
-               {data.Actors}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Director: </span>
-               {data.Director}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Box office: </span>
-               {data.BoxOffice}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Awards: </span>
-               {data.Awards}
-            </div>
-            <div className="movie__common-info">
-               <span className="movie__common-info-title">Ratings: </span>
-               {ratings}
-            </div>
-         </>
-      )
-   }
-
-
-   renderErrorMessage() {
-      return (
-         <>
-            <button
-               className="movie__close-full-info-button"
-               onClick={this.closeFullInfo}
-            >&#10008;</button>
-            <div className="error-message error-message_size_small">Check your connection</div>
-         </>
-      )
-   }
 
 
    render() {
@@ -157,7 +88,11 @@ class Movie extends React.PureComponent {
 
                   {
                      (isFullInfoOpened && isFullDataLoaded) || (isFullInfoOpened && isError) ?
-                        this.renderFullInfo()
+                        <FullMovieInfo
+                           isError={isError}
+                           handleCloseButtonClick={this.closeFullInfo}
+                           data={this.state.fullData}
+                        />
                         :
                         null
                   }
