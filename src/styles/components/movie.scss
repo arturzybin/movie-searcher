@@ -51,10 +51,10 @@
       background-image: url(../../img/poster-not-found.svg);
       background-repeat: no-repeat;
       background-position: 50% 50%;
-      background-size: 70%;
+      background-size: 50%;
 
       @include themify() {
-         filter: themed('searchbar-buttons-filter');
+         filter: themed('poster-replacer-filter');
       }
    }
 

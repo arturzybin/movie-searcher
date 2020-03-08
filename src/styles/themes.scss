@@ -4,6 +4,7 @@ $themes: (
       movie-background-color: rgba(202, 211, 214, 0.8),
       searchbar-background-color: #dfe6e9,
       searchbar-buttons-filter: none,
+      poster-replacer-filter: invert(20%),
       text-color: #000,
       main-theme-color: #B80024,
       rating-color: #00b894
@@ -13,6 +14,7 @@ $themes: (
       movie-background-color: rgba(45, 52, 54, 0.8),
       searchbar-background-color: #2d3031,
       searchbar-buttons-filter: invert(75%),
+      poster-replacer-filter: invert(75%),
       text-color: rgb(218, 218, 218),
       main-theme-color: #00b894,
       rating-color: #fab1a0,
