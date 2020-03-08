@@ -23,12 +23,12 @@ class App extends React.Component{
   }
 
 
-  startSearching = async (data) => {
+  startSearching = (data) => {
     this.setState({
       shouldStartNewSearch: true,
       searchData: {
         ...data,
-        API_KEY: 'fa254bc5'
+        API_KEY: '1ff05d65'
       }
     });
   }
@@ -40,8 +40,8 @@ class App extends React.Component{
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
         <ThemeToggler handleToggle={this.toggleTheme} />
-        <SearchBar handleSearch={() => {
-          this.startSearching();
+        <SearchBar handleSearch={(data) => {
+          this.startSearching(data);
           this.setState({ shouldRenderMoviesList: true })
         }}/>
 

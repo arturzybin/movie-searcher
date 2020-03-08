@@ -1,6 +1,7 @@
 @import '../themes';
 
-.filter { position: absolute;
+.filter {
+   position: absolute;
    right: 0;
    left: 0;
 
@@ -13,9 +14,9 @@
    border-radius: 5px;
 
    @include themify() {
-      background-color: themed('searchbar-background');
-      box-shadow: 0 0 5px themed('searchbar-shadow-color');
-   } 
+      background-color: themed('searchbar-background-color');
+      box-shadow: 0 0 5px themed('main-theme-color');
+   }
 
    &_closed {
       visibility: hidden;
@@ -60,24 +61,24 @@
 
       border: 1px solid #ff75b9;
       border-radius: .25em;
-      background: transparent;
 
       &:nth-child(2) {
          margin-left: auto;
       }
    }
-   select { padding: 0 .5em;
+   select {
+      padding: 0 .5em;
 
       cursor: pointer;
 
       @include themify() {
          color: themed('text-color');
-      } 
+      }
       flex: 1;
 
       option {
          @include themify() {
-            background-color: themed('searchbar-background');
+            background-color: themed('searchbar-background-color');
          }
       }
    }

@@ -10,6 +10,9 @@ function MoviesList(props) {
    const [loadedMovies, setLoadedMovies] = useState([]);
    const [loadedPagesCount, setLoadedPagesCount] = useState(0);
 
+   const [isError, setIsError] = useState(false);
+   const [errorMessage, setErrorMessage] = useState('');
+
    useEffect(() => {
       if (props.shouldStartNewSearch) {
          startNewSearch();
@@ -33,32 +36,79 @@ function MoviesList(props) {
    }
 
 
+   // state updates asynchronous, so when it is reset
+   // this function might use not current state
+   // so it receives parameter that tells whether it needs to use reset state
    async function loadNextPage(resetLoaded) {
       const nextPageNumber = resetLoaded ? 1 : loadedPagesCount + 1;
-      const response = await fetch(
-         `${process.env.PUBLIC_URL}search_response_${nextPageNumber}page.json`);
-      const data = await response.json();
 
+      const url = createURL(nextPageNumber);
+      let data;
+      try{
+         const response = await fetch(url);
+         data = await response.json();
+      } catch(e) {
+         handleError('Check your connection');
+         return;
+      }
+      if (data.Response === 'False') {
+         handleError(data.Error);
+         return;
+      }
+      
+      if (isError) setIsError(false);
       setLoadedMoviesCount(resetLoaded ? data.Search.length : loadedMoviesCount + data.Search.length);
-      setTotalMoviesCount(data.totalResults);
+      if (data.totalResults) setTotalMoviesCount(+data.totalResults);
       setLoadedMovies(resetLoaded ? [...data.Search] : [...loadedMovies, ...data.Search]);
       setLoadedPagesCount(nextPageNumber);
    }
 
 
-   function renderMoviesList() {
-      return loadedMovies.map((movieData) => <Movie data={movieData} key={movieData.imdbID} />)
+   function createURL(nextPageNumber) {
+      const {API_KEY, title, type, year} = props.data;
+      const url = new URL('http://www.omdbapi.com');
+
+      url.searchParams.set('apikey', API_KEY);
+      url.searchParams.set('s', title);
+      if (type) url.searchParams.set('type', type);
+      if (year) url.searchParams.set('y', year);
+      url.searchParams.set('page', nextPageNumber);
+
+      return url;
    }
 
+
+   function handleError(errorMessage) {
+      setIsError(true);
+      if (errorMessage === 'Movie not found!' || errorMessage === 'Check your connection') {
+         setErrorMessage(errorMessage)
+      } else {
+         setErrorMessage('Something went wrong...');
+      }
+   }
+
+
+   function renderMoviesList() {
+      return loadedMovies.map((movieData) => <Movie data={{...movieData, API_KEY: props.data.API_KEY}} key={movieData.imdbID} />)
+   }
+
+
    return (
+      isError ? 
+      <div className="error-message">{errorMessage}</div> 
+      :
       <div className="movies-list">
          <div className="movies-list__movies-container">
             {renderMoviesList()}
          </div>
          {
             totalMoviesCount === loadedMoviesCount ? 
-            <button className="movies-list__movies-over">That's all</button> :
-            <button className="movies-list__show-more-button" onClick={() => loadNextPage(false)}>Show more</button>
+            <button className="movies-list__movies-over">That's all</button> 
+            :
+            <button
+               className="movies-list__show-more-button"
+               onClick={() => loadNextPage(false)}
+            >Show more</button>
          }
       </div>
    )

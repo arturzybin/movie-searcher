@@ -1,0 +1,39 @@
+@import '../themes';
+
+.error-message {
+   font-size: 40px;
+
+   position: absolute;
+   top: 30%;
+   right: 0;
+   left: 0;
+
+   display: inline-block;
+
+   width: 50%;
+   margin: auto;
+
+   animation: vibrate 1.5s linear infinite both;
+   text-align: center;
+
+   @include themify() {
+      color: themed('text-color');
+      text-shadow: 2px 3px 0 themed('main-theme-color'), 2px 3px 10px themed('main-theme-color');
+   }
+
+   &_size_small {
+      width: 40%;
+
+      border-radius: 30px;
+
+      backdrop-filter: blur(4px);
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .error-message_size_small {
+      font-size: 20px;
+
+      width: 50%;
+   }
+}
