@@ -54,6 +54,9 @@ class Movie extends React.PureComponent {
          this.loadFullData();
       }
       this.setState({ isFullInfoOpened: true });
+
+      window.history.pushState(null, null, "?page=movie")
+      window.onpopstate = this.closeFullInfo;
    }
 
 
@@ -61,6 +64,8 @@ class Movie extends React.PureComponent {
       if (this.state.isFullInfoOpened) {
          this.setState({ isFullInfoOpened: false });
       }
+      window.onpopstate = null;
+      window.history.pushState(null, null, "?page=movies-list")
    }
 
 
