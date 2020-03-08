@@ -41,21 +41,22 @@ function MoviesList(props) {
    // so it receives parameter that tells whether it needs to use reset state
    async function loadNextPage(resetLoaded) {
       const nextPageNumber = resetLoaded ? 1 : loadedPagesCount + 1;
-
       const url = createURL(nextPageNumber);
       let data;
-      try{
+
+      try {
          const response = await fetch(url);
          data = await response.json();
-      } catch(e) {
+      } catch (e) {
          handleError('Check your connection');
          return;
       }
+
       if (data.Response === 'False') {
          handleError(data.Error);
          return;
       }
-      
+
       if (isError) setIsError(false);
       setLoadedMoviesCount(resetLoaded ? data.Search.length : loadedMoviesCount + data.Search.length);
       if (data.totalResults) setTotalMoviesCount(+data.totalResults);
@@ -65,7 +66,7 @@ function MoviesList(props) {
 
 
    function createURL(nextPageNumber) {
-      const {API_KEY, title, type, year} = props.data;
+      const { API_KEY, title, type, year } = props.data;
       const url = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
@@ -92,28 +93,43 @@ function MoviesList(props) {
 
 
    function renderMoviesList() {
-      return loadedMovies.map((movieData) => <Movie data={{...movieData, API_KEY: props.data.API_KEY}} key={movieData.imdbID} />)
+      return loadedMovies.map((movieData) => (
+         <Movie
+            data={{ ...movieData, API_KEY: props.data.API_KEY }}
+            key={movieData.imdbID}
+         />
+      ))
+   }
+
+
+   // returns either 'Show more', or 'That's all', or Loading
+   function renderStatus() {
+      if (totalMoviesCount === 0) {
+         return <div className="movies-list__loading" >  <div></div><div></div><div></div><div></div>  </div>
+      }
+      if (totalMoviesCount === loadedMoviesCount) {
+         return <button className="movies-list__movies-over">That's all</button>
+      }
+
+      return (
+         <button
+            className="movies-list__show-more-button"
+            onClick={() => loadNextPage(false)}
+         >Show more</button>
+      )
    }
 
 
    return (
       isError ? 
-      <div className="error-message">{errorMessage}</div> 
-      :
-      <div className="movies-list">
-         <div className="movies-list__movies-container">
-            {renderMoviesList()}
+         <div className="error-message">{errorMessage}</div>
+         :
+         <div className="movies-list">
+            <div className="movies-list__movies-container">
+               {renderMoviesList()}
+            </div>
+            {renderStatus()}
          </div>
-         {
-            totalMoviesCount === loadedMoviesCount ? 
-            <button className="movies-list__movies-over">That's all</button> 
-            :
-            <button
-               className="movies-list__show-more-button"
-               onClick={() => loadNextPage(false)}
-            >Show more</button>
-         }
-      </div>
    )
 }
 

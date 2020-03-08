@@ -7,7 +7,7 @@ import FullMovieInfo from './FullMovieInfo';
 class Movie extends React.PureComponent {
    state = {
       isFullDataLoaded: false,
-      fullData: [],
+      fullData: {},
       isFullInfoOpened: false,
       isError: false
    }

@@ -45,6 +45,10 @@
 
    &__poster-replacer {
       display: none;
+
+      & ~ .movie__title {
+         width: calc(100% - 95px);
+      }
    }
 
    &__title {
@@ -98,6 +102,7 @@
    }
 }
 
+
 @media screen and (max-width: 1000px) {
    .movie_opened .movie {
       &__common-info {
@@ -131,6 +136,11 @@
       }
       &__runtime {
          top: 40px;
+      }
+      &__poster-replacer ~ .movie__title{
+         margin-right: 20px;
+         margin-left: 20px;
+         width: calc(100% - 65px);
       }
       &__common-info {
          padding-right: 10px;
