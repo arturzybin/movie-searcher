@@ -7,6 +7,7 @@ function ThemeToggler(props) {
          className="theme-toggler"
          type="checkbox"
          onChange={props.handleToggle}
+         defaultChecked={true}
       >
       </input>
    )

@@ -13,7 +13,7 @@ class App extends React.Component{
     shouldStartNewSearch: false,
     searchData: {},
     shouldRenderMoviesList: false,
-    theme: 'dark'
+    theme: 'light'
   }
 
 
