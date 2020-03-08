@@ -66,7 +66,7 @@ function MoviesList(props) {
 
    function createURL(nextPageNumber) {
       const {API_KEY, title, type, year} = props.data;
-      const url = new URL('http://www.omdbapi.com');
+      const url = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
       url.searchParams.set('s', title);

@@ -33,7 +33,7 @@ class Movie extends React.PureComponent {
    createURL = () => {
       const { API_KEY } = this.props.data;//
       const id = this.props.data.imdbID;
-      const url = new URL('http://www.omdbapi.com');
+      const url = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
       url.searchParams.set('i', id);
