@@ -34,6 +34,11 @@ class App extends React.Component{
     });
   }
 
+  
+  resetStartNewSearch = () => {
+    this.setState({ shouldStartNewSearch: false })
+  }
+
 
   render() {
     const { shouldRenderMoviesList, searchData, shouldStartNewSearch } = this.state;
@@ -47,7 +52,7 @@ class App extends React.Component{
         <MoviesList
           data={searchData}
           shouldStartNewSearch={shouldStartNewSearch}
-          handleSearchStart={ () => this.setState({ shouldStartNewSearch: false }) }
+          handleSearchStart={this.resetStartNewSearch}
         />
         }
       </main>

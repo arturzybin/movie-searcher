@@ -12,7 +12,7 @@ function MoviesList(props) {
 
    const [isError, setIsError] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
-
+   
    useEffect(() => {
       if (props.shouldStartNewSearch) {
          startNewSearch();
@@ -58,6 +58,7 @@ function MoviesList(props) {
       }
 
       if (isError) setIsError(false);
+
       setLoadedMoviesCount(resetLoaded ? data.Search.length : loadedMoviesCount + data.Search.length);
       if (data.totalResults) setTotalMoviesCount(+data.totalResults);
       setLoadedMovies(resetLoaded ? [...data.Search] : [...loadedMovies, ...data.Search]);
@@ -133,7 +134,13 @@ function MoviesList(props) {
 }
 
 MoviesList.propTypes = {
-   data: PropTypes.object.isRequired,
+   data: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      plot: PropTypes.string.isRequired,
+      year: PropTypes.string.isRequired,
+      API_KEY: PropTypes.string.isRequired
+   }).isRequired,
    shouldStartNewSearch: PropTypes.bool.isRequired,
    handleSearchStart: PropTypes.func.isRequired
 }
