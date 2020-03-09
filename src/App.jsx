@@ -25,6 +25,7 @@ class App extends React.Component{
 
   startSearching = (data) => {
     this.setState({
+      shouldRenderMoviesList: true,
       shouldStartNewSearch: true,
       searchData: {
         ...data,
@@ -40,10 +41,7 @@ class App extends React.Component{
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
         <ThemeToggler handleToggle={this.toggleTheme} />
-        <SearchBar handleSearch={(data) => {
-          this.startSearching(data);
-          this.setState({ shouldRenderMoviesList: true })
-        }}/>
+        <SearchBar handleSearch={this.startSearching}/>
 
         {shouldRenderMoviesList &&
         <MoviesList

@@ -7,10 +7,10 @@ class SearchBar extends React.Component {
    state= {
       isFilterClosed: true,
       isCentered: true,
-      title: null,
-      type: null,
-      genre: null,
-      year: null
+      title: '',
+      type: '',
+      plot: 'short',
+      year: ''
    }
 
 
@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
 
    
    handleSearch = () => {
-      const {isCentered, title, type, genre, year} = this.state;
+      const {isCentered, title, type, plot, year} = this.state;
 
       if (!title) return;
 
@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
       }
 
       this.props.handleSearch({
-         title, type, genre, year
+         title, type, plot, year
       })
    }
 
@@ -58,7 +58,7 @@ class SearchBar extends React.Component {
             <Filter
                isClosed={isFilterClosed}
                handleTypeChange={(data) => this.setState({ type: data })}
-               handleGenreChange={(data) => this.setState({ genre: data })}
+               handlePlotChange={(data) => this.setState({ plot: data })}
                handleYearChange={(data) => this.setState({ year: data })}
             />
          </div>

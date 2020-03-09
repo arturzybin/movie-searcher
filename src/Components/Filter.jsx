@@ -16,6 +16,13 @@ function Filter(props) {
             </select>
          </div>
 
+         <div className="filter__select">
+            <select name="plot" onChange={(e) => props.handlePlotChange(e.target.value)}>
+               <option value="short">Plot: short</option>
+               <option value="full">Plot: full</option>
+            </select>
+         </div>
+
          {/* maybe in future, paid version of api needed */}
          {/* <div className="filter__select">
             <select name="genre" onChange={(e) => props.handleGenreChange(e.target.value)}>
@@ -140,7 +147,7 @@ function Filter(props) {
 Filter.propTypes = {
    isClosed: PropTypes.bool.isRequired,
    handleTypeChange: PropTypes.func.isRequired,
-   handleGenreChange: PropTypes.func.isRequired,
+   handlePlotChange: PropTypes.func.isRequired,
    handleYearChange: PropTypes.func.isRequired
 }
 

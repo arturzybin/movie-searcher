@@ -37,7 +37,10 @@ function FullMovieInfo(props) {
          >&#10008;</button>
 
          <div className="movie__runtime movie__label">{data.Runtime}</div>
-         <div className="movie__common-info">{data.Plot}</div>
+         <div className="movie__common-info">
+            <span className="movie__common-info-title">{data.Plot === 'N/A' ? 'Plot: ' : ''}</span>
+            {data.Plot}
+         </div>
          <div className="movie__common-info">
             <span className="movie__common-info-title">Genre: </span>
             {data.Genre}

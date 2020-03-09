@@ -86,7 +86,6 @@ function MoviesList(props) {
       } else if (errorMessage === 'Too many results.') {
          setErrorMessage('Too many results, specify your request')
       } else {
-         console.log(errorMessage)
          setErrorMessage('Something went wrong...');
       }
    }
@@ -95,7 +94,7 @@ function MoviesList(props) {
    function renderMoviesList() {
       return loadedMovies.map((movieData, index) => (
          <Movie
-            data={{ ...movieData, API_KEY: props.data.API_KEY }}
+            data={{ ...movieData, plot: props.data.plot, API_KEY: props.data.API_KEY }}
             key={movieData.imdbID + index}
          />
       ))
