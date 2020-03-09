@@ -34,12 +34,12 @@ class Movie extends React.PureComponent {
 
    createURL = () => {
       const { API_KEY } = this.props.data;//
-      const {imdbID, plot} = this.props.data;
+      const {imdbID, plotLength} = this.props.data;
       const url = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
       url.searchParams.set('i', imdbID);
-      url.searchParams.set('plot', plot);
+      url.searchParams.set('plot', plotLength);
 
       return url;
    }
@@ -115,7 +115,7 @@ Movie.propTypes = {
       Year: PropTypes.string.isRequired,
       Type: PropTypes.string.isRequired,
       imdbID: PropTypes.string.isRequired,
-      plot: PropTypes.string.isRequired,
+      plotLength: PropTypes.string.isRequired,
    }).isRequired
 }
 

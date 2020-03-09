@@ -95,7 +95,7 @@ function MoviesList(props) {
    function renderMoviesList() {
       return loadedMovies.map((movieData, index) => (
          <Movie
-            data={{ ...movieData, plot: props.data.plot, API_KEY: props.data.API_KEY }}
+            data={{ ...movieData, plotLength: props.data.plotLength, API_KEY: props.data.API_KEY }}
             key={index}
          />
       ))
@@ -137,7 +137,7 @@ MoviesList.propTypes = {
    data: PropTypes.shape({
       title: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
-      plot: PropTypes.string.isRequired,
+      plotLength: PropTypes.string.isRequired,
       year: PropTypes.string.isRequired,
       API_KEY: PropTypes.string.isRequired
    }).isRequired,

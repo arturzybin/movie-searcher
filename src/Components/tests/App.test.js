@@ -14,7 +14,7 @@ describe('App should render MoviesList ONLY after first search', () => {
 
    it('renders MoviesList after search', () => {
       const wrapper = mount(<App />);
-      const fakeData = { title:'some title',type:'', plot:'', year:'', API_KEY:'' };
+      const fakeData = { title:'some title',type:'', plotLength:'', year:'', API_KEY:'' };
       wrapper.instance().startSearching(fakeData);
       
       wrapper.update();

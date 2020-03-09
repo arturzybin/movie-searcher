@@ -34,14 +34,14 @@ test('Searchbar should have relevant search info when calling search callback', 
    wrapper.find('.searchbar__input').simulate('change');
 
    wrapper.find('.filter__select select[name="type"]').simulate('change', {target: {value: 'movie'}});
-   wrapper.find('.filter__select select[name="plot"]').simulate('change', {target: {value: 'full'}});
+   wrapper.find('.filter__select select[name="plotLength"]').simulate('change', {target: {value: 'full'}});
    wrapper.find('.filter__select select[name="year"]').simulate('change', {target: {value: '2000'}});
 
    wrapper.find('.searchbar__search-button').simulate('click');
 
    expect(searchCallback.mock.calls[0][0].title).toBe('some title');
    expect(searchCallback.mock.calls[0][0].type).toBe('movie');
-   expect(searchCallback.mock.calls[0][0].plot).toBe('full');
+   expect(searchCallback.mock.calls[0][0].plotLength).toBe('full');
    expect(searchCallback.mock.calls[0][0].year).toBe('2000');
 })
 

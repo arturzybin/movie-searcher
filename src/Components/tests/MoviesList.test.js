@@ -31,7 +31,7 @@ afterAll(() => {
 describe('MoviesList should start searching', () => {
    it("doesn't start searching if shouldStartNewSearch is false", () => {
       const handleSearchStart = jest.fn(() => { });
-      const fakeData = { title: 'some title', type: '', plot: '', year: '', API_KEY: '' };
+      const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
       mount( <MoviesList data={fakeData} shouldStartNewSearch={false} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(0);
@@ -39,7 +39,7 @@ describe('MoviesList should start searching', () => {
 
    it("starts searching if shouldStartNewSearch is true", () => {
       const handleSearchStart = jest.fn(() => { });
-      const fakeData = { title: 'some title', type: '', plot: '', year: '', API_KEY: '' };
+      const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
       mount( <MoviesList data={fakeData} shouldStartNewSearch={true} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(1);
@@ -51,7 +51,7 @@ describe('MoviesList should load pages', () => {
    let fakeData;
 
    beforeEach(() => {
-      fakeData = { title: 'some title', type: '', plot: '', year: '', API_KEY: '' };
+      fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
       
       const mockSuccessResponse = {
          "Search": [{
