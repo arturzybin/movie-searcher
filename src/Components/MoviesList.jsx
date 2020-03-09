@@ -37,7 +37,7 @@ function MoviesList(props) {
 
 
    // state updates asynchronous, so when it is reset
-   // this function might use not current state
+   // this function might use outdated state
    // so it receives parameter that tells whether it needs to use reset state
    async function loadNextPage(resetLoaded) {
       const nextPageNumber = resetLoaded ? 1 : loadedPagesCount + 1;
@@ -96,7 +96,7 @@ function MoviesList(props) {
       return loadedMovies.map((movieData, index) => (
          <Movie
             data={{ ...movieData, plot: props.data.plot, API_KEY: props.data.API_KEY }}
-            key={movieData.imdbID + index}
+            key={index}
          />
       ))
    }
