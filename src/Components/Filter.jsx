@@ -18,8 +18,8 @@ function Filter(props) {
 
          <div className="filter__select">
             <select name="plot" onChange={(e) => props.handlePlotChange(e.target.value)}>
-               <option value="short">Plot: short</option>
-               <option value="full">Plot: full</option>
+               <option value="short">Load short plot</option>
+               <option value="full">Load full plot</option>
             </select>
          </div>
 
