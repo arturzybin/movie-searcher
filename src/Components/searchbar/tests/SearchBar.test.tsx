@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import { SearchBar } from '../SearchBar';
+import { ISearchData } from '../../../interfaces';
 
 
 describe('Searchbar should start searching only if there is text at the title input', () => {
@@ -38,6 +39,7 @@ test('Searchbar should have relevant search info when calling search callback', 
    wrapper.find('.filter__select select[name="year"]').simulate('change', {target: {value: '2000'}});
 
    wrapper.find('.searchbar__search-button').simulate('click');
+
 
    expect(searchCallback.mock.calls[0][0].title).toBe('some title');
    expect(searchCallback.mock.calls[0][0].type).toBe('movie');

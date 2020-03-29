@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import { MoviesList } from '../MoviesList'
+import { ISearchData } from '../../../interfaces';
 
 // Silence until enzyme fixed to use ReactTestUtils.act()
 // If not silenced we get the following warning:
@@ -29,9 +30,10 @@ afterAll(() => {
 
 
 describe('MoviesList should start searching', () => {
+   const fakeData: ISearchData = { title: 'some title', type: '', plotLength: 'short', year: '', API_KEY: '' };
+
    it("doesn't start searching if shouldStartNewSearch is false", () => {
       const handleSearchStart = jest.fn(() => { });
-      const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
       mount( <MoviesList searchData={fakeData} shouldStartNewSearch={false} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(0);
@@ -39,7 +41,6 @@ describe('MoviesList should start searching', () => {
 
    it("starts searching if shouldStartNewSearch is true", () => {
       const handleSearchStart = jest.fn(() => { });
-      const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
       mount( <MoviesList searchData={fakeData} shouldStartNewSearch={true} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(1);
@@ -48,10 +49,10 @@ describe('MoviesList should start searching', () => {
 
 
 describe('MoviesList should load pages', () => {
-   let fakeData;
+   let fakeData: ISearchData;
 
    beforeEach(() => {
-      fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
+      fakeData = { title: 'some title', type: '', plotLength: 'short', year: '', API_KEY: '' };
       
       const mockSuccessResponse = {
          "Search": [{
@@ -68,7 +69,7 @@ describe('MoviesList should load pages', () => {
       const mockFetchPromise = Promise.resolve({
          json: () => mockJsonPromise,
       });
-      jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+      jest.spyOn(window, 'fetch').mockImplementation(() => mockFetchPromise);
 
       jest.spyOn(React, "useEffect").mockImplementation(f => f());
    })
@@ -79,6 +80,6 @@ describe('MoviesList should load pages', () => {
 
    it('loads first page automatically', () => {
       mount(<MoviesList searchData={fakeData} shouldStartNewSearch={true} handleSearchStart={() => { }} />);
-      expect(global.fetch).toHaveBeenCalledTimes(1);
+      expect(window.fetch).toHaveBeenCalledTimes(1);
    })
 })

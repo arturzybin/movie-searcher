@@ -6,8 +6,8 @@ import { App } from '../../App';
 
 describe('ThemeToggler should toggle app theme', () => {
    it('should switch to dark theme if not checked', () => {
-      const wrapper = mount(<App />);
-      wrapper.find('.theme-toggler').simulate('change', { target: { checked: false } });
+      const wrapper = mount(<App />)
+      wrapper.find('.theme-toggler').simulate('change', { target: { checked: false } })
       
       expect(wrapper.find('#app-root').hasClass('theme-light')).toBe(false);
       expect(wrapper.find('#app-root').hasClass('theme-dark')).toBe(true);
