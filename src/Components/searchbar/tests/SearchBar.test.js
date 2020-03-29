@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import SearchBar from '../SearchBar';
+import { SearchBar } from '../SearchBar';
 
 
 describe('Searchbar should start searching only if there is text at the title input', () => {

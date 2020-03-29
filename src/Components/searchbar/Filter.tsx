@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+interface IFilterProps {
+   isClosed: boolean,
+   handleTypeChange: (arg0: string) => void,
+   handlePlotChange: (arg0: 'short' | 'full') => void,
+   handleYearChange: (arg0: string) => void
+}
 
-function Filter(props) {
+export const Filter: React.FC<IFilterProps> = (props) => {
    return (
       // just hardcode all values, don't wanna bother so much about this
       
@@ -17,7 +22,7 @@ function Filter(props) {
          </div>
 
          <div className="filter__select">
-            <select name="plotLength" onChange={(e) => props.handlePlotChange(e.target.value)}>
+            <select name="plotLength" onChange={(e) => props.handlePlotChange(e.target.value as 'short' | 'full')}>
                <option value="short">Load short plot</option>
                <option value="full">Load full plot</option>
             </select>
@@ -143,12 +148,3 @@ function Filter(props) {
       </div>
    )
 }
-
-Filter.propTypes = {
-   isClosed: PropTypes.bool.isRequired,
-   handleTypeChange: PropTypes.func.isRequired,
-   handlePlotChange: PropTypes.func.isRequired,
-   handleYearChange: PropTypes.func.isRequired
-}
-
-export default Filter;

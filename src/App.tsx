@@ -1,16 +1,25 @@
 import React from 'react';
 
-import SearchBar from './components/searchbar/SearchBar';
+import { ISearchData } from './interfaces';
+
+import { SearchBar } from './components/searchbar/SearchBar';
 import ThemeToggler from './components/ThemeToggler';
 import MoviesList from './components/moviesList/MoviesList';
 
-import { IAppState, ISearchData } from './interfaces';
 
 import 'normalize.css';
 import './styles/style.scss';
 
 
-class App extends React.Component {
+interface IAppState {
+  shouldStartNewSearch: boolean,
+  searchData: ISearchData | {},
+  shouldRenderMoviesList: boolean,
+  theme: 'light' | 'dark'
+}
+
+
+export class App extends React.Component<{}, IAppState> {
   state: IAppState = {
     shouldStartNewSearch: false,
     searchData: {},
@@ -31,17 +40,17 @@ class App extends React.Component {
       shouldRenderMoviesList: true,
       shouldStartNewSearch: true,
       searchData
-    } as IAppState);
+    });
   }
 
 
   resetStartNewSearch = (): void => {
-    this.setState({ shouldStartNewSearch: false } as IAppState)
+    this.setState({ shouldStartNewSearch: false })
   }
 
 
   render() {
-    const { shouldRenderMoviesList, searchData, shouldStartNewSearch }: IAppState = this.state;
+    const { shouldRenderMoviesList, searchData, shouldStartNewSearch } = this.state;
 
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
@@ -59,5 +68,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import SearchBar from '../SearchBar';
+import { SearchBar } from '../SearchBar';
 
 
 test('Filter is closed by default', () => {

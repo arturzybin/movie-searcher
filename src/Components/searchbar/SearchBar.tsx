@@ -1,10 +1,24 @@
 import React from 'react';
-import Filter from './Filter';
-import PropTypes from 'prop-types';
+import { ISearchData } from '../../interfaces';
+import { Filter } from './Filter';
 
 
-class SearchBar extends React.Component {
-   state= {
+interface ISearchBarState {
+   isFilterClosed: boolean,
+   isCentered: boolean,
+   title: string,
+   type: string,
+   plotLength: 'short' | 'full',
+   year: string
+}
+
+interface ISearchBarProps {
+   handleSearch: (searchData: ISearchData) => void
+}
+
+
+export class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
+   state: ISearchBarState = {
       isFilterClosed: true,
       isCentered: true,
       title: '',
@@ -14,14 +28,14 @@ class SearchBar extends React.Component {
    }
 
 
-   triggerEnterKeySearch = (e) => {
+   triggerEnterKeySearch = (e: React.KeyboardEvent): void => {
       if (e.keyCode !== 13) return;
       this.handleSearch();
    }
 
-   
-   handleSearch = () => {
-      const {isCentered, title, type, plotLength, year} = this.state;
+
+   handleSearch = (): void => {
+      const { isCentered, title, type, plotLength, year } = this.state;
 
       if (!title) return;
 
@@ -34,8 +48,9 @@ class SearchBar extends React.Component {
       })
    }
 
+
    render() {
-      const {isCentered, isFilterClosed} = this.state;
+      const { isCentered, isFilterClosed } = this.state;
 
       return (
          <div className={isCentered ? "searchbar searchbar_centered" : "searchbar"}>
@@ -58,16 +73,10 @@ class SearchBar extends React.Component {
             <Filter
                isClosed={isFilterClosed}
                handleTypeChange={(data) => this.setState({ type: data })}
-               handlePlotChange={(data) => this.setState({ plotLength: data })}
+               handlePlotChange={(data: 'short' | 'full') => this.setState({ plotLength: data })}
                handleYearChange={(data) => this.setState({ year: data })}
             />
          </div>
       )
    }
 }
-
-SearchBar.propTypes = {
-   handleSearch: PropTypes.func.isRequired
-}
-
-export default SearchBar;
