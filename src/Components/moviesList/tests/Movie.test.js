@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import Movie from '../Movie'
+import { Movie } from '../Movie'
 
 describe("Movie should open full info on click", () => {
    let wrapper;

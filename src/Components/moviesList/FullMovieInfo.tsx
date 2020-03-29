@@ -1,8 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { IFullMovieInfo } from '../../interfaces';
 
 
-function FullMovieInfo(props) {
+interface IProps {
+   isError: boolean,
+   handleCloseButtonClick: () => void,
+   data: IFullMovieInfo
+}
+
+export const FullMovieInfo: React.FC<IProps> = (props) => {
    if (props.isError) {
       return (
          <>
@@ -18,16 +24,13 @@ function FullMovieInfo(props) {
 
    const data = props.data;
 
-   let ratings = data.Ratings.map((rating) => (
+   let ratings: JSX.Element[] = data.Ratings.map((rating) => (
       <span key={rating.Source}>
          {rating.Source}:{' '}
          <span className='movie__rating'>{rating.Value}</span>{', '}
       </span>
    ))
    
-   if (!ratings.length) {
-      ratings = 'N/A'
-   };
 
    return (
       <>
@@ -67,16 +70,8 @@ function FullMovieInfo(props) {
          </div>
          <div className="movie__common-info">
             <span className="movie__common-info-title">Ratings: </span>
-            {ratings}
+            {ratings.length ? ratings : 'N/A'}
          </div>
       </>
    )
 }
-
-FullMovieInfo.propTypes = {
-   isError: PropTypes.bool.isRequired,
-   handleCloseButtonClick: PropTypes.func.isRequired,
-   data: PropTypes.object.isRequired
-}
-
-export default FullMovieInfo;

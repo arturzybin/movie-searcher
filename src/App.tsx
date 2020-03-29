@@ -22,7 +22,7 @@ interface IAppState {
 export class App extends React.Component<{}, IAppState> {
   state: IAppState = {
     shouldStartNewSearch: false,
-    searchData: { title: '', type: '', plotLength: 'short', year: '', API_KEY: '' },
+    searchData: {} as ISearchData,
     shouldRenderMoviesList: false,
     theme: 'light'
   }

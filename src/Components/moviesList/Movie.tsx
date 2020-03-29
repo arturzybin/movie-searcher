@@ -1,51 +1,71 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { IFullMovieInfo } from '../../interfaces';
+import { FullMovieInfo } from './FullMovieInfo';
 
-import FullMovieInfo from './FullMovieInfo';
+
+interface IMovieProps {
+   data: {
+      Poster: string,
+      Title: string,
+      Year: string,
+      Type: string,
+      imdbID: string,
+      plotLength: 'short' | 'full',
+      API_KEY: string
+   }
+}
+
+interface IMovieState {
+   isFullDataLoaded: boolean,
+   fullData: IFullMovieInfo,
+   isFullInfoOpened: boolean,
+   isError: boolean
+}
 
 
-class Movie extends React.PureComponent {
-   state = {
+export class Movie extends React.PureComponent<IMovieProps, IMovieState> {
+   state: IMovieState = {
       isFullDataLoaded: false,
-      fullData: {},
+      fullData: {} as IFullMovieInfo,
       isFullInfoOpened: false,
       isError: false
    }
 
 
    loadFullData = async () => {
-      const url = this.createURL();
+      const url: string = this.createURL();
       let data;
+
       try {
          const response = await fetch(url);
          data = await response.json();
       } catch {
-         this.setState({ isError: true })
+         this.setState({ isError: true } as IMovieState)
          return;
       }
 
-      if (this.state.isError) this.setState({ isError: false });
       this.setState({
          isFullDataLoaded: true,
-         fullData: data
-      })
+         fullData: data,
+         isError: false
+      } as IMovieState)
    }
 
 
-   createURL = () => {
+   createURL = (): string => {
       const { API_KEY } = this.props.data;//
-      const {imdbID, plotLength} = this.props.data;
-      const url = new URL('https://www.omdbapi.com');
+      const { imdbID, plotLength } = this.props.data;
+      const url: URL = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
       url.searchParams.set('i', imdbID);
       url.searchParams.set('plot', plotLength);
 
-      return url;
+      return url.toString()
    }
 
 
-   openFullInfo = (e) => {
+   openFullInfo = (e: React.MouseEvent): void => {
       // to not trigger outside click that will close full info
       e.stopPropagation();
 
@@ -56,14 +76,14 @@ class Movie extends React.PureComponent {
       }
       this.setState({ isFullInfoOpened: true });
 
-      window.history.pushState(null, null, "?page=movie")
+      window.history.pushState(null, '', "?page=movie")
       window.onpopstate = this.closeFullInfo;
    }
 
 
-   closeFullInfo = () => {
+   closeFullInfo = (): void => {
       if (this.state.isFullInfoOpened) {
-         this.setState({ isFullInfoOpened: false });
+         this.setState({ isFullInfoOpened: false } as IMovieState);
       }
       window.onpopstate = null;
    }
@@ -107,16 +127,3 @@ class Movie extends React.PureComponent {
       )
    }
 }
-
-Movie.propTypes = {
-   data: PropTypes.shape({
-      Poster: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Year: PropTypes.string.isRequired,
-      Type: PropTypes.string.isRequired,
-      imdbID: PropTypes.string.isRequired,
-      plotLength: PropTypes.string.isRequired,
-   }).isRequired
-}
-
-export default Movie;

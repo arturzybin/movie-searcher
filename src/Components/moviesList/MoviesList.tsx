@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { ISearchData } from '../../interfaces';
-import Movie from './Movie';
-
-
-interface IMovieInfo {
-   Title: string,
-   Year: string,
-   imdbID: string,
-   Type: string,
-   Poster: string
-}
+import { ISearchData, IMovieInfo } from '../../interfaces';
+import { Movie } from './Movie';
 
 
 interface IMoviesListProps {
@@ -82,7 +73,7 @@ export const MoviesList: React.FC<IMoviesListProps> = (props) => {
    }
 
 
-   function createURL(nextPageNumber: number) {
+   function createURL(nextPageNumber: number): string {
       const { API_KEY, title, type, year } = props.searchData;
       const url: URL = new URL('https://www.omdbapi.com');
 
@@ -96,7 +87,7 @@ export const MoviesList: React.FC<IMoviesListProps> = (props) => {
    }
 
 
-   function handleError(status: string) {
+   function handleError(status: string): void {
       setIsError(true);
       if (status === 'Movie not found!' || status === 'Check your connection') {
          setErrorMessage(status)
@@ -108,7 +99,7 @@ export const MoviesList: React.FC<IMoviesListProps> = (props) => {
    }
 
 
-   function renderMoviesList() {
+   function renderMoviesList(): JSX.Element[] {
       return loadedMovies.map((movieData, index) => (
          <Movie
             data={{ ...movieData, plotLength: props.searchData.plotLength, API_KEY: props.searchData.API_KEY }}
@@ -119,7 +110,7 @@ export const MoviesList: React.FC<IMoviesListProps> = (props) => {
 
 
    // returns either 'Show more', or 'That's all', or Loading
-   function renderStatus() {
+   function renderStatus(): JSX.Element {
       if (totalMoviesCount === 0) {
          return <div className="movies-list__loading" >  <div></div><div></div><div></div><div></div>  </div>
       }
