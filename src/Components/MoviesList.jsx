@@ -67,7 +67,7 @@ function MoviesList(props) {
 
 
    function createURL(nextPageNumber) {
-      const { API_KEY, title, type, year } = props.data;
+      const { API_KEY, title, type, year } = props.searchData;
       const url = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
@@ -95,7 +95,7 @@ function MoviesList(props) {
    function renderMoviesList() {
       return loadedMovies.map((movieData, index) => (
          <Movie
-            data={{ ...movieData, plotLength: props.data.plotLength, API_KEY: props.data.API_KEY }}
+            data={{ ...movieData, plotLength: props.searchData.plotLength, API_KEY: props.searchData.API_KEY }}
             key={index}
          />
       ))

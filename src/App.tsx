@@ -4,12 +4,14 @@ import SearchBar from './Components/SearchBar';
 import ThemeToggler from './Components/ThemeToggler';
 import MoviesList from './Components/MoviesList';
 
+import { IAppState, ISearchData } from './interfaces';
+
 import 'normalize.css';
 import './styles/style.scss';
 
 
-class App extends React.Component{
-  state = {
+class App extends React.Component {
+  state: IAppState = {
     shouldStartNewSearch: false,
     searchData: {},
     shouldRenderMoviesList: false,
@@ -17,26 +19,24 @@ class App extends React.Component{
   }
 
 
-  toggleTheme = (event) => {
-    const theme = event.target.checked ? 'light' : 'dark';
-    this.setState({ theme })
+  toggleTheme = (event: React.FormEvent<HTMLInputElement>): void => {
+    const themeCheckbox = event.target as HTMLInputElement
+    const theme = themeCheckbox.checked ? 'light' : 'dark'
+    this.setState({ theme } as IAppState)
   }
 
 
-  startSearching = (data) => {
+  startSearching = (searchData: ISearchData): void => {
     this.setState({
       shouldRenderMoviesList: true,
       shouldStartNewSearch: true,
-      searchData: {
-        ...data,
-        API_KEY: '1ff05d65'
-      }
+      searchData
     });
   }
 
-  
-  resetStartNewSearch = () => {
-    this.setState({ shouldStartNewSearch: false })
+
+  resetStartNewSearch = (): void => {
+    this.setState({ shouldStartNewSearch: false } as IAppState)
   }
 
 
@@ -46,14 +46,14 @@ class App extends React.Component{
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >
         <ThemeToggler handleToggle={this.toggleTheme} />
-        <SearchBar handleSearch={this.startSearching}/>
+        <SearchBar handleSearch={this.startSearching} />
 
         {shouldRenderMoviesList &&
-        <MoviesList
-          data={searchData}
-          shouldStartNewSearch={shouldStartNewSearch}
-          handleSearchStart={this.resetStartNewSearch}
-        />
+          <MoviesList
+            searchData={searchData}
+            shouldStartNewSearch={shouldStartNewSearch}
+            handleSearchStart={this.resetStartNewSearch}
+          />
         }
       </main>
     )

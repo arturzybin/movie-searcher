@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ThemeToggler(props) {
+function ThemeToggler({ handleToggle }) {
    return (
       <input
          className="theme-toggler"
          type="checkbox"
-         onChange={props.handleToggle}
+         onChange={handleToggle}
          defaultChecked={true}
       >
       </input>

@@ -30,7 +30,7 @@ class SearchBar extends React.Component {
       }
 
       this.props.handleSearch({
-         title, type, plotLength, year
+         title, type, plotLength, year, API_KEY: '1ff05d65'
       })
    }
 
