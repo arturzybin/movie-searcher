@@ -3,7 +3,7 @@ import React from 'react';
 import { ISearchData } from './interfaces';
 
 import { SearchBar } from './components/searchbar/SearchBar';
-import ThemeToggler from './components/ThemeToggler';
+import { ThemeToggler } from './components/ThemeToggler';
 import MoviesList from './components/moviesList/MoviesList';
 
 

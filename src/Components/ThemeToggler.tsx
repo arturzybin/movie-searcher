@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function ThemeToggler({ handleToggle }) {
+interface IThemeTogglerProps {
+   handleToggle: (event: React.FormEvent<HTMLInputElement>) => void
+}
+
+export const ThemeToggler: React.FC<IThemeTogglerProps> = ({ handleToggle }) => {
    return (
       <input
          className="theme-toggler"
@@ -12,9 +15,3 @@ function ThemeToggler({ handleToggle }) {
       </input>
    )
 }
-
-ThemeToggler.propTypes = {
-   handleToggle: PropTypes.func.isRequired,
-}
-
-export default ThemeToggler;
