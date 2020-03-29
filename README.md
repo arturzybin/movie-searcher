@@ -29,9 +29,11 @@ To start the tests run ```npm test``` inside the project directory
 
 ## Built With
 
+* [TypeScript](https://www.typescriptlang.org/) - JavaScript that scales
 * [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 * [Jest](https://jestjs.io) - A JavaScript testing framework
 * [Enzyme](https://enzymejs.github.io/enzyme/) - A JavaScript Testing utility for React
+* [Webpack](https://webpack.js.org/) - A static module bundler for JavaScript applications
 
 
 ## Authors
