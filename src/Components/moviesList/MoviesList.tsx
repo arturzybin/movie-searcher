@@ -1,17 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
+import { ISearchData } from '../../interfaces';
 import Movie from './Movie';
 
 
-function MoviesList(props) {
-   const [loadedMoviesCount, setLoadedMoviesCount] = useState(0);
-   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
-   const [loadedMovies, setLoadedMovies] = useState([]);
-   const [loadedPagesCount, setLoadedPagesCount] = useState(0);
+interface IMovieInfo {
+   Title: string,
+   Year: string,
+   imdbID: string,
+   Type: string,
+   Poster: string
+}
 
-   const [isError, setIsError] = useState(false);
-   const [errorMessage, setErrorMessage] = useState('');
-   
+
+interface IMoviesListProps {
+   searchData: ISearchData,
+   shouldStartNewSearch: boolean,
+   handleSearchStart: () => void
+}
+
+
+export const MoviesList: React.FC<IMoviesListProps> = (props) => {
+   const [loadedMoviesCount, setLoadedMoviesCount] = useState<number>(0);
+   const [totalMoviesCount, setTotalMoviesCount] = useState<number>(0);
+   const [loadedPagesCount, setLoadedPagesCount] = useState<number>(0);
+   const [loadedMovies, setLoadedMovies] = useState<IMovieInfo[]>([]);
+
+   const [isError, setIsError] = useState<boolean>(false);
+   const [errorMessage, setErrorMessage] = useState<string>('');
+
    useEffect(() => {
       if (props.shouldStartNewSearch) {
          startNewSearch();
@@ -20,14 +37,14 @@ function MoviesList(props) {
    }, [props.shouldStartNewSearch])
 
 
-   function startNewSearch() {
+   function startNewSearch(): void {
       props.handleSearchStart();
       resetState();
       loadNextPage(true);
    }
 
 
-   function resetState() {
+   function resetState(): void {
       setLoadedMoviesCount(0);
       setTotalMoviesCount(0);
       setLoadedMovies([]);
@@ -38,9 +55,9 @@ function MoviesList(props) {
    // state updates asynchronous, so when it is reset
    // this function might use outdated state
    // so it receives parameter that tells whether it needs to use reset state
-   async function loadNextPage(resetLoaded) {
-      const nextPageNumber = resetLoaded ? 1 : loadedPagesCount + 1;
-      const url = createURL(nextPageNumber);
+   async function loadNextPage(resetLoaded: boolean) {
+      const nextPageNumber: number = resetLoaded ? 1 : loadedPagesCount + 1;
+      const url: string = createURL(nextPageNumber);
       let data;
 
       try {
@@ -59,27 +76,27 @@ function MoviesList(props) {
       if (isError) setIsError(false);
 
       setLoadedMoviesCount(resetLoaded ? data.Search.length : loadedMoviesCount + data.Search.length);
-      if (data.totalResults) setTotalMoviesCount(+data.totalResults); // check why it is needed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      setLoadedMovies(resetLoaded ? [...data.Search] : [...loadedMovies, ...data.Search]);
+      setTotalMoviesCount(+data.totalResults);
       setLoadedPagesCount(nextPageNumber);
+      setLoadedMovies(resetLoaded ? [...data.Search] : [...loadedMovies, ...data.Search]);
    }
 
 
-   function createURL(nextPageNumber) {
+   function createURL(nextPageNumber: number) {
       const { API_KEY, title, type, year } = props.searchData;
-      const url = new URL('https://www.omdbapi.com');
+      const url: URL = new URL('https://www.omdbapi.com');
 
       url.searchParams.set('apikey', API_KEY);
       url.searchParams.set('s', title);
       if (type) url.searchParams.set('type', type);
       if (year) url.searchParams.set('y', year);
-      url.searchParams.set('page', nextPageNumber);
+      url.searchParams.set('page', nextPageNumber.toString());
 
-      return url;
+      return url.toString();
    }
 
 
-   function handleError(status) {
+   function handleError(status: string) {
       setIsError(true);
       if (status === 'Movie not found!' || status === 'Check your connection') {
          setErrorMessage(status)
@@ -120,7 +137,7 @@ function MoviesList(props) {
 
 
    return (
-      isError ? 
+      isError ?
          <div className="error-message">{errorMessage}</div>
          :
          <div className="movies-list">
@@ -131,17 +148,3 @@ function MoviesList(props) {
          </div>
    )
 }
-
-// MoviesList.propTypes = {
-//    data: PropTypes.shape({
-//       title: PropTypes.string.isRequired,
-//       type: PropTypes.string.isRequired,
-//       plotLength: PropTypes.string.isRequired,
-//       year: PropTypes.string.isRequired,
-//       API_KEY: PropTypes.string.isRequired
-//    }).isRequired,
-//    shouldStartNewSearch: PropTypes.bool.isRequired,
-//    handleSearchStart: PropTypes.func.isRequired
-// }
-
-export default MoviesList;

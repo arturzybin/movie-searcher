@@ -4,7 +4,7 @@ import { ISearchData } from './interfaces';
 
 import { SearchBar } from './components/searchbar/SearchBar';
 import { ThemeToggler } from './components/ThemeToggler';
-import MoviesList from './components/moviesList/MoviesList';
+import { MoviesList } from './components/moviesList/MoviesList';
 
 
 import 'normalize.css';
@@ -13,7 +13,7 @@ import './styles/style.scss';
 
 interface IAppState {
   shouldStartNewSearch: boolean,
-  searchData: ISearchData | {},
+  searchData: ISearchData,
   shouldRenderMoviesList: boolean,
   theme: 'light' | 'dark'
 }
@@ -22,7 +22,7 @@ interface IAppState {
 export class App extends React.Component<{}, IAppState> {
   state: IAppState = {
     shouldStartNewSearch: false,
-    searchData: {},
+    searchData: { title: '', type: '', plotLength: 'short', year: '', API_KEY: '' },
     shouldRenderMoviesList: false,
     theme: 'light'
   }

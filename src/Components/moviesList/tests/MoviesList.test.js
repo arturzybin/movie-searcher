@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import MoviesList from '../MoviesList'
+import { MoviesList } from '../MoviesList'
 
 // Silence until enzyme fixed to use ReactTestUtils.act()
 // If not silenced we get the following warning:
@@ -32,7 +32,7 @@ describe('MoviesList should start searching', () => {
    it("doesn't start searching if shouldStartNewSearch is false", () => {
       const handleSearchStart = jest.fn(() => { });
       const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
-      mount( <MoviesList data={fakeData} shouldStartNewSearch={false} handleSearchStart={handleSearchStart} /> );
+      mount( <MoviesList searchData={fakeData} shouldStartNewSearch={false} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(0);
    })
@@ -40,7 +40,7 @@ describe('MoviesList should start searching', () => {
    it("starts searching if shouldStartNewSearch is true", () => {
       const handleSearchStart = jest.fn(() => { });
       const fakeData = { title: 'some title', type: '', plotLength: '', year: '', API_KEY: '' };
-      mount( <MoviesList data={fakeData} shouldStartNewSearch={true} handleSearchStart={handleSearchStart} /> );
+      mount( <MoviesList searchData={fakeData} shouldStartNewSearch={true} handleSearchStart={handleSearchStart} /> );
 
       expect(handleSearchStart.mock.calls.length).toBe(1);
    })
