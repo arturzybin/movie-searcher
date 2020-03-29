@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import Movie from './Movie';
 
@@ -60,7 +59,7 @@ function MoviesList(props) {
       if (isError) setIsError(false);
 
       setLoadedMoviesCount(resetLoaded ? data.Search.length : loadedMoviesCount + data.Search.length);
-      if (data.totalResults) setTotalMoviesCount(+data.totalResults);
+      if (data.totalResults) setTotalMoviesCount(+data.totalResults); // check why it is needed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       setLoadedMovies(resetLoaded ? [...data.Search] : [...loadedMovies, ...data.Search]);
       setLoadedPagesCount(nextPageNumber);
    }
@@ -80,11 +79,11 @@ function MoviesList(props) {
    }
 
 
-   function handleError(errorMessage) {
+   function handleError(status) {
       setIsError(true);
-      if (errorMessage === 'Movie not found!' || errorMessage === 'Check your connection') {
-         setErrorMessage(errorMessage)
-      } else if (errorMessage === 'Too many results.') {
+      if (status === 'Movie not found!' || status === 'Check your connection') {
+         setErrorMessage(status)
+      } else if (status === 'Too many results.') {
          setErrorMessage('Too many results, specify your request')
       } else {
          setErrorMessage('Something went wrong...');
@@ -133,16 +132,16 @@ function MoviesList(props) {
    )
 }
 
-MoviesList.propTypes = {
-   data: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      plotLength: PropTypes.string.isRequired,
-      year: PropTypes.string.isRequired,
-      API_KEY: PropTypes.string.isRequired
-   }).isRequired,
-   shouldStartNewSearch: PropTypes.bool.isRequired,
-   handleSearchStart: PropTypes.func.isRequired
-}
+// MoviesList.propTypes = {
+//    data: PropTypes.shape({
+//       title: PropTypes.string.isRequired,
+//       type: PropTypes.string.isRequired,
+//       plotLength: PropTypes.string.isRequired,
+//       year: PropTypes.string.isRequired,
+//       API_KEY: PropTypes.string.isRequired
+//    }).isRequired,
+//    shouldStartNewSearch: PropTypes.bool.isRequired,
+//    handleSearchStart: PropTypes.func.isRequired
+// }
 
 export default MoviesList;

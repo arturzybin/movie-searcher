@@ -31,7 +31,7 @@ class App extends React.Component {
       shouldRenderMoviesList: true,
       shouldStartNewSearch: true,
       searchData
-    });
+    } as IAppState);
   }
 
 

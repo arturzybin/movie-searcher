@@ -23,8 +23,8 @@ function FullMovieInfo(props) {
          {rating.Source}:{' '}
          <span className='movie__rating'>{rating.Value}</span>{', '}
       </span>
-   )
-   )
+   ))
+   
    if (!ratings.length) {
       ratings = 'N/A'
    };
