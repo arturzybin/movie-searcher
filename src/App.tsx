@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SearchBar from './Components/SearchBar';
-import ThemeToggler from './Components/ThemeToggler';
-import MoviesList from './Components/MoviesList';
+import SearchBar from './components/searchbar/SearchBar';
+import ThemeToggler from './components/ThemeToggler';
+import MoviesList from './components/moviesList/MoviesList';
 
 import { IAppState, ISearchData } from './interfaces';
 
@@ -41,7 +41,7 @@ class App extends React.Component {
 
 
   render() {
-    const { shouldRenderMoviesList, searchData, shouldStartNewSearch } = this.state;
+    const { shouldRenderMoviesList, searchData, shouldStartNewSearch }: IAppState = this.state;
 
     return (
       <main id="app-root" className={`theme-${this.state.theme}`} >

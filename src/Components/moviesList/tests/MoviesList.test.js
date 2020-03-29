@@ -78,7 +78,7 @@ describe('MoviesList should load pages', () => {
    })
 
    it('loads first page automatically', () => {
-      mount(<MoviesList data={fakeData} shouldStartNewSearch={true} handleSearchStart={() => { }} />);
+      mount(<MoviesList searchData={fakeData} shouldStartNewSearch={true} handleSearchStart={() => { }} />);
       expect(global.fetch).toHaveBeenCalledTimes(1);
    })
 })
